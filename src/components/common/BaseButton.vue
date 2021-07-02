@@ -1,6 +1,6 @@
 <template>
   <button
-    class="px-4 py-2 bg-teal-600 rounded text-white font-medium focus:ring ring-teal-400/30"
+    class="focus:ring ring-teal-400/30 px-4 py-2 font-medium text-white bg-teal-600 rounded"
   >
     <slot />
   </button>

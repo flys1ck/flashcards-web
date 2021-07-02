@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-screen">
     <AppHeader />
-    <div class="flex-grow flex overflow-hidden">
+    <div class="flex flex-grow overflow-hidden">
       <AppAside />
       <main class="flex-grow overflow-auto bg-teal-900">
         <router-view />

@@ -1,8 +1,8 @@
 <template>
   <header
-    class="bg-gray-900 h-20 flex-none border-b flex items-center justify-between px-8"
+    class="flex items-center justify-between flex-none h-20 px-8 bg-gray-900 border-b"
   >
-    <div class="text-teal-400 text-2xl font-bold">Flashcards.io</div>
+    <div class="text-2xl font-bold text-teal-400">Flashcards.io</div>
     <div>
       <BaseButton>Sign Up</BaseButton>
     </div>

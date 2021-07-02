@@ -2,11 +2,7 @@
   "template": {
     "scope": "vue",
     "prefix": "template",
-    "body": [
-      "<template>",
-      "  $1",
-      "</template>"
-    ],
+    "body": ["<template>", "  $1", "</template>"],
     "description": "Create <template> block"
   },
   "script": {
@@ -40,11 +36,7 @@
   "style": {
     "scope": "vue",
     "prefix": "style",
-    "body": [
-      "<style lang=\"scss\" scoped>",
-      "$1",
-      "</style>"
-    ],
+    "body": ["<style lang=\"scss\" scoped>", "$1", "</style>"],
     "description": "Create <style> block"
   }
 }

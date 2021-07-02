@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="flex flex-none flex-col justify-between bg-gray-900 border-r border-white truncate"
+    class="flex flex-col justify-between flex-none truncate bg-gray-900 border-r border-white"
   >
     <div>
       <DeckSelect />
