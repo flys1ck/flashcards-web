@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "csstools.postcss",
+        "editorconfig.editorconfig",
+        "eamodio.gitlens",
+        "heybourn.headwind",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "johnsoncodehk.volar"
+    ]
+}
