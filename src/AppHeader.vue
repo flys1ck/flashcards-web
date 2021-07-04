@@ -4,7 +4,7 @@
   >
     <div class="text-2xl font-bold text-teal-400">Flashcards.io</div>
     <div>
-      <BaseButton>Sign Up</BaseButton>
+      <BaseButton as="router-link" :to="{ name: 'SignUp' }">Sign Up</BaseButton>
     </div>
   </header>
 </template>
