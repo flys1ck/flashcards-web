@@ -5,5 +5,11 @@ import Layouts from "vite-plugin-vue-layouts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [Vue(), Pages(), Layouts()],
+  plugins: [
+    Vue(),
+    // https://github.com/hannoeru/vite-plugin-pages
+    Pages(),
+    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+    Layouts(),
+  ],
 });
