@@ -6,11 +6,11 @@
 </template>
 
 <route>
-  {
-    name: "SignUp",
-    meta: {
-      requiresAuth: false,
-      layout: "blank"
-    }
+{
+  name: "SignUp",
+  meta: {
+    requiresAuth: false,
+    layout: "blank"
   }
+}
 </route>

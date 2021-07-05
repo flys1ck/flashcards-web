@@ -58,10 +58,10 @@
 </template>
 
 <route>
-  {
-    name: "Cards",
-    meta: {
-      requiresAuth: false
-    }
+{
+  name: "Cards",
+  meta: {
+    requiresAuth: false
   }
+}
 </route>
