@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -27,7 +27,7 @@ import {
   ListboxOption,
 } from "@headlessui/vue";
 
-export default {
+export default defineComponent({
   components: { Listbox, ListboxButton, ListboxOptions, ListboxOption },
 
   setup() {
@@ -45,5 +45,5 @@ export default {
       selectedPerson,
     };
   },
-};
+});
 </script>

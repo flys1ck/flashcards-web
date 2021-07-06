@@ -1,7 +1,7 @@
 {
   "editor.linkedEditing": true,
   "volar.tsPlugin": true,
-  "eslint.validate": ["javascript", "javascriptreact", "vue"],
+  "eslint.validate": ["javascript", "typescript", "vue"],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },

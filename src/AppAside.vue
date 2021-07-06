@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DeckSelect from "./components/DeckSelect.vue";
+import DeckSelect from "@components/DeckSelect.vue";
 
 export default defineComponent({
   name: "AppAside",

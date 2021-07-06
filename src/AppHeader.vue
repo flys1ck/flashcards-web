@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import BaseButton from "./components/common/BaseButton.vue";
+import BaseButton from "@components/common/BaseButton.vue";
 
 export default defineComponent({
   name: "AppHeader",
