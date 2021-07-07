@@ -16,9 +16,8 @@ export default defineComponent({
   props: {
     /**
      * Tag or component name.
-     * @values primary, secondary
      */
-    as: { type: [Object, String], default: "button" },
+    as: { type: String, default: "button" },
     /**
      * Visual style of the button.
      * @values primary, secondary
@@ -26,7 +25,7 @@ export default defineComponent({
     variant: {
       type: String,
       default: "primary",
-      validator: (value) => ["primary", "secondary"].includes(value),
+      validator: (value: string) => ["primary", "secondary"].includes(value),
     },
     /**
      * Size of the button.
@@ -35,7 +34,7 @@ export default defineComponent({
     size: {
       type: String,
       default: "md",
-      validator: (value) => ["md", "lg"].includes(value),
+      validator: (value: string) => ["md", "lg"].includes(value),
     },
   },
   setup(props) {

@@ -18,5 +18,5 @@ module.exports = {
     // override/add rules settings here, such as:
     // 'vue/no-unused-vars': 'error'
   },
-  ignorePatterns: ["src/shims-vue.d.ts", "src/shims-heroicons.d.ts"],
+  ignorePatterns: ["src/shims-vue.d.ts", "src/shims-heroicons.d.ts", "**/*.js"],
 };

@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   mode: "jit",
@@ -8,6 +9,9 @@ module.exports = {
     extend: {
       colors: {
         teal: colors.teal,
+      },
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
       transitionProperty: {
         width: "width",
