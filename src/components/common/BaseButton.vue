@@ -1,7 +1,7 @@
 <template>
   <component
     :is="as"
-    class="focus:ring ring-teal-400/30 px-4 py-2 font-medium text-white bg-teal-600 rounded"
+    class="focus:ring ring-teal-400/30 inline-block font-medium text-white bg-teal-600 rounded"
     :class="computedClasses"
   >
     <slot />
@@ -16,8 +16,14 @@ export default defineComponent({
   props: {
     /**
      * Tag or component name.
+     * @values button, a, router-link
      */
-    as: { type: String, default: "button" },
+    as: {
+      type: String,
+      default: "button",
+      validator: (value: string) =>
+        ["button", "a", "router-link"].includes(value),
+    },
     /**
      * Visual style of the button.
      * @values primary, secondary
@@ -34,16 +40,17 @@ export default defineComponent({
     size: {
       type: String,
       default: "md",
-      validator: (value: string) => ["md", "lg"].includes(value),
+      validator: (value: string) => ["sm", "md", "lg"].includes(value),
     },
   },
   setup(props) {
     const computedClasses = computed(() => {
       return {
-        "hover:bg-teal-600 focus:ring-teal-600 active:bg-teal-600 text-white bg-teal-800":
+        "hover:bg-teal-600 focus:ring-teal-600 active:bg-teal-600 text-white bg-teal-600":
           props.variant === "primary",
         "hover:bg-teal-200 focus:ring-teal-100 active:bg-teal-900 text-teal-500 bg-teal-100":
           props.variant === "secondary",
+        "px-3 py-1 text-lg": props.size === "sm",
         "px-4 py-2 text-lg": props.size === "md",
         "px-5 py-3 text-xl": props.size === "lg",
       };
