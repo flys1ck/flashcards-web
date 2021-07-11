@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <AppHeader />
-    <div class="flex flex-grow overflow-hidden">
-      <AppAside />
-      <main class="flex-grow overflow-auto bg-teal-900">
+  <div class="flex h-screen">
+    <AppAside />
+    <div class="flex flex-col flex-grow overflow-hidden">
+      <AppHeader />
+      <main class="flex-grow overflow-auto">
         <router-view />
       </main>
     </div>
@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import AppHeader from "../AppHeader.vue";
-import AppAside from "../AppAside.vue";
+import AppHeader from "@components/AppHeader.vue";
+import AppAside from "@components/AppAside.vue";
 
 export default defineComponent({
   components: { AppHeader, AppAside },
