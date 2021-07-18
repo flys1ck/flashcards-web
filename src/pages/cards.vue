@@ -1,10 +1,14 @@
-<template>Cards</template>
+<template>
+  <div class="grid grid-cols-2 gap-8">
+    <CardEditor />
+  </div>
+</template>
 
-<route>
-{
-  name: "Cards",
-  meta: {
-    requiresAuth: false
-  }
-}
-</route>
+<script lang="ts">
+import { defineComponent } from "vue";
+import CardEditor from "@/components/CardEditor.vue";
+
+export default defineComponent({
+  components: { CardEditor },
+});
+</script>
