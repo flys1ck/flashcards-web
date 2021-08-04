@@ -9,6 +9,7 @@
       <form class="p-2" @submit.prevent="v$.$touch()">
         <BaseInput
           v-model="formData.username"
+          type="text"
           label="Username"
           name="username"
           :errors="v$.username.$errors"

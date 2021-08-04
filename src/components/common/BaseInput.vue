@@ -102,7 +102,7 @@ export default defineComponent({
       type: String,
       default: "text",
       validator: (value: string) =>
-        ["text", "mail", "password", "search"].includes(value),
+        ["text", "email", "password", "search"].includes(value),
     },
     /**
      * Size of the input.

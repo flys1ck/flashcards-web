@@ -11,6 +11,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
+import lowlight from "lowlight";
 // nodes
 import Document from "@tiptap/extension-document";
 import Blockquote from "@tiptap/extension-blockquote";
@@ -25,6 +26,7 @@ import Stike from "@tiptap/extension-strike";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import Underline from "@tiptap/extension-underline";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 
 import CardEditorMenu from "@components/CardEditorMenu.vue";
 
@@ -64,6 +66,13 @@ export default defineComponent({
             class: "underline",
           },
         }),
+        CodeBlockLowlight.configure({
+          lowlight,
+          HTMLAttributes: {
+            class:
+              "bg-gray-900 text-gray-50 rounded p-2 overflow-hidden overflow-auto",
+          },
+        }),
       ],
       editorProps: {
         attributes: {
@@ -78,3 +87,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+@import "highlight.js/styles/atom-one-dark.css";
+</style>

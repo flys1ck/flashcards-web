@@ -14,6 +14,7 @@
     "@tiptap/extension-blockquote": "^2.0.0-beta.14",
     "@tiptap/extension-bold": "^2.0.0-beta.14",
     "@tiptap/extension-code": "^2.0.0-beta.14",
+    "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.32",
     "@tiptap/extension-document": "^2.0.0-beta.12",
     "@tiptap/extension-highlight": "^2.0.0-beta.14",
     "@tiptap/extension-italic": "^2.0.0-beta.14",
