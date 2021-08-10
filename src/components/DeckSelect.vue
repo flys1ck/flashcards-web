@@ -47,8 +47,8 @@
   </Listbox>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -57,27 +57,9 @@ import {
 } from "@headlessui/vue";
 import { SelectorIcon, CheckIcon } from "@heroicons/vue/solid";
 
-export default defineComponent({
-  components: {
-    Listbox,
-    ListboxButton,
-    ListboxOptions,
-    ListboxOption,
-    SelectorIcon,
-    CheckIcon,
-  },
-
-  setup() {
-    const people = [
-      { id: 1, name: "Training für Programmierwettbewerbe" },
-      { id: 2, name: "Analysis" },
-    ];
-    const selectedPerson = ref(people[0]);
-
-    return {
-      people,
-      selectedPerson,
-    };
-  },
-});
+const people = [
+  { id: 1, name: "Training für Programmierwettbewerbe" },
+  { id: 2, name: "Analysis" },
+];
+const selectedPerson = ref(people[0]);
 </script>

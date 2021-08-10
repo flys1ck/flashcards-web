@@ -1,14 +1,12 @@
 <template>Henlo Mr {{ user }}</template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineProps } from "vue";
 
-export default defineComponent({
-  props: {
-    user: {
-      type: String,
-      required: true,
-    },
+defineProps({
+  user: {
+    type: String,
+    required: true,
   },
 });
 </script>

@@ -4,21 +4,18 @@
   </component>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineProps } from "vue";
 
-export default defineComponent({
-  name: "BaseLink",
-  props: {
-    /**
-     * Tag or component name.
-     * @values a, router-link
-     */
-    as: {
-      type: String,
-      default: "a",
-      validator: (value: string) => ["a", "router-link"].includes(value),
-    },
+defineProps({
+  /**
+   * Tag or component name.
+   * @values a, router-link
+   */
+  as: {
+    type: String,
+    default: "a",
+    validator: (value: string) => ["a", "router-link"].includes(value),
   },
 });
 </script>

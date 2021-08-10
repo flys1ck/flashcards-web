@@ -4,24 +4,19 @@
   </button>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script setup lang="ts">
+import { computed, defineProps } from "vue";
 
-export default defineComponent({
-  props: {
-    isActive: {
-      type: Boolean,
-      required: true,
-    },
+const props = defineProps({
+  isActive: {
+    type: Boolean,
+    required: true,
   },
-  setup(props) {
-    const computedClasses = computed(() => {
-      return {
-        "bg-teal-900 text-teal-50": props.isActive,
-      };
-    });
+});
 
-    return { computedClasses };
-  },
+const computedClasses = computed(() => {
+  return {
+    "bg-teal-900 text-teal-50": props.isActive,
+  };
 });
 </script>

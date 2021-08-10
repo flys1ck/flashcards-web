@@ -51,8 +51,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive } from "vue";
+<script setup lang="ts">
+import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 
@@ -62,27 +62,19 @@ import BaseButton from "@/components/common/BaseButton.vue";
 
 import heroImage from "@assets/images/learn.jpg";
 
-export default defineComponent({
-  name: "SignUp",
-  components: { BaseInput, BaseHeading, BaseButton },
-  setup() {
-    const formData = reactive({
-      username: "",
-      password: "",
-      email: "",
-    });
-
-    const rules = {
-      username: { required },
-      password: { required },
-      email: { required, email },
-    };
-
-    const v$ = useVuelidate(rules, formData, { $autoDirty: true });
-
-    return { formData, v$, heroImage };
-  },
+const formData = reactive({
+  username: "",
+  password: "",
+  email: "",
 });
+
+const rules = {
+  username: { required },
+  password: { required },
+  email: { required, email },
+};
+
+const v$ = useVuelidate(rules, formData, { $autoDirty: true });
 </script>
 
 <route>

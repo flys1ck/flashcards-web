@@ -45,8 +45,8 @@
   </aside>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive } from "vue";
+<script setup lang="ts">
+import { reactive } from "vue";
 
 import {
   CollectionIcon,
@@ -62,52 +62,39 @@ import BaseHeading from "@components/common/BaseHeading.vue";
 import DeckSelect from "@components/DeckSelect.vue";
 import AsideLink from "@components/AsideLink.vue";
 
-export default defineComponent({
-  name: "AppAside",
-  components: {
-    BaseButton,
-    BaseLink,
-    BaseHeading,
-    DeckSelect,
-    AsideLink,
+const navigationLinks = reactive([
+  {
+    name: "Study",
+    to: "/study",
+    icon: PlayIcon,
   },
-  setup() {
-    const navigationLinks = reactive([
-      {
-        name: "Study",
-        to: "/study",
-        icon: PlayIcon,
-      },
-      {
-        name: "Cards",
-        to: "/cards",
-        icon: CollectionIcon,
-      },
-      {
-        name: "Statistics",
-        to: "/statistics",
-        icon: ChartPieIcon,
-      },
-      {
-        name: "Collaborators",
-        to: "/collaborators",
-        icon: UsersIcon,
-      },
-      {
-        name: "Settings",
-        to: "/settings",
-        icon: CogIcon,
-      },
-    ]);
-    const supportLinks = reactive([
-      {
-        name: "Help & Feedback",
-        to: "/feedback",
-        icon: AnnotationIcon,
-      },
-    ]);
+  {
+    name: "Cards",
+    to: "/cards",
+    icon: CollectionIcon,
+  },
+  {
+    name: "Statistics",
+    to: "/statistics",
+    icon: ChartPieIcon,
+  },
+  {
+    name: "Collaborators",
+    to: "/collaborators",
+    icon: UsersIcon,
+  },
+  {
+    name: "Settings",
+    to: "/settings",
+    icon: CogIcon,
+  },
+]);
 
-    return { navigationLinks, supportLinks };
+const supportLinks = reactive([
+  {
+    name: "Help & Feedback",
+    to: "/feedback",
+    icon: AnnotationIcon,
   },
-});
+]);
 </script>

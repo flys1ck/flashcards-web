@@ -10,12 +10,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import AppHeader from "@components/AppHeader.vue";
 import AppAside from "@components/AppAside.vue";
-
-export default defineComponent({
-  components: { AppHeader, AppAside },
-});
 </script>

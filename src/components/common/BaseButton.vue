@@ -8,55 +8,49 @@
   </component>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from "vue";
+<script setup lang="ts">
+import { defineProps, computed } from "vue";
 
-export default defineComponent({
-  name: "BaseButton",
-  props: {
-    /**
-     * Tag or component name.
-     * @values button, a, router-link
-     */
-    as: {
-      type: String,
-      default: "button",
-      validator: (value: string) =>
-        ["button", "a", "router-link"].includes(value),
-    },
-    /**
-     * Visual style of the button.
-     * @values primary, secondary
-     */
-    variant: {
-      type: String,
-      default: "primary",
-      validator: (value: string) => ["primary", "secondary"].includes(value),
-    },
-    /**
-     * Size of the button.
-     * @values md, lg
-     */
-    size: {
-      type: String,
-      default: "md",
-      validator: (value: string) => ["sm", "md", "lg"].includes(value),
-    },
+const props = defineProps({
+  /**
+   * Tag or component name.
+   * @values button, a, router-link
+   */
+  as: {
+    type: String,
+    default: "button",
+    validator: (value: string) =>
+      ["button", "a", "router-link"].includes(value),
   },
-  setup(props) {
-    const computedClasses = computed(() => {
-      return {
-        "hover:bg-teal-600 focus:ring-teal-600 active:bg-teal-600 text-white bg-teal-600":
-          props.variant === "primary",
-        "hover:bg-teal-200 focus:ring-teal-100 active:bg-teal-900 text-teal-500 bg-teal-100":
-          props.variant === "secondary",
-        "px-3 py-1 text-lg": props.size === "sm",
-        "px-4 py-2 text-lg": props.size === "md",
-        "px-5 py-3 text-xl": props.size === "lg",
-      };
-    });
+  /**
+   * Visual style of the button.
+   * @values primary, secondary
+   */
+  variant: {
+    type: String,
+    default: "primary",
+    validator: (value: string) => ["primary", "secondary"].includes(value),
+  },
+  /**
+   * Size of the button.
+   * @values md, lg
+   */
+  size: {
+    type: String,
+    default: "md",
+    validator: (value: string) => ["sm", "md", "lg"].includes(value),
+  },
+});
 
-    return { computedClasses };
-  },
+const computedClasses = computed(() => {
+  return {
+    "hover:bg-teal-600 focus:ring-teal-600 active:bg-teal-600 text-white bg-teal-600":
+      props.variant === "primary",
+    "hover:bg-teal-200 focus:ring-teal-100 active:bg-teal-900 text-teal-500 bg-teal-100":
+      props.variant === "secondary",
+    "px-3 py-1 text-lg": props.size === "sm",
+    "px-4 py-2 text-lg": props.size === "md",
+    "px-5 py-3 text-xl": props.size === "lg",
+  };
 });
 </script>
