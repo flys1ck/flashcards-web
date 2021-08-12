@@ -1,7 +1,7 @@
 <template>
   <div>
-    <label v-if="label">
-      <div>
+    <label :for="name">
+      <div :class="labelClasses">
         <span class="text-sm font-medium">
           {{ label }}
         </span>
@@ -9,23 +9,23 @@
           >(optional)</span
         >
       </div>
-    </label>
-    <div :class="inputWrapperClasses">
-      <div
-        v-if="icon"
-        class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
-      >
-        <Component :is="icon" class="w-5 h-5 text-gray-400" />
+      <div :class="inputWrapperClasses">
+        <div
+          v-if="icon"
+          class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+        >
+          <Component :is="icon" class="w-5 h-5 text-gray-400" />
+        </div>
+        <input
+          :id="name"
+          :type="type"
+          class="focus:ring-2 w-full text-lg rounded shadow-sm"
+          :class="inputClasses"
+          :value="modelValue"
+          @input="onInput"
+        />
       </div>
-      <input
-        :id="name"
-        :type="type"
-        class="focus:ring-2 w-full text-lg rounded shadow-sm"
-        :class="inputClasses"
-        :value="modelValue"
-        @input="onInput"
-      />
-    </div>
+    </label>
 
     <!-- Help Text -->
     <small v-if="$slots.helpText" class="block text-xs text-gray-500">
@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, PropType, computed } from "vue";
+import { PropType, computed, ref } from "vue";
 import { ErrorObject } from "@vuelidate/core";
 
 const props = defineProps({
@@ -115,6 +115,11 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
+const labelClasses = computed(() => {
+  return {
+    "sr-only": !props.label,
+  };
+});
 const inputClasses = computed(() => {
   return {
     "border-gray-300 focus:border-teal-600 focus:ring-teal-600/50": !props.isInvalid,
@@ -130,6 +135,8 @@ const inputWrapperClasses = computed(() => {
     relative: props.icon !== null,
   };
 });
+
+const label = ref(props.label ? props.label : props.name);
 
 function onInput(event: Event) {
   emit("update:modelValue", (event.target as HTMLInputElement).value);

@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, PropType } from "vue";
+import { computed, PropType } from "vue";
 import { Editor } from "@tiptap/vue-3";
 
 import CardEditorMenuButton from "@components/CardEditorMenuButton.vue";
