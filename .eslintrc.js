@@ -11,6 +11,8 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     // https://eslint.vuejs.org/
     "plugin:vue/vue3-recommended",
+    // https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility
+    "plugin:vuejs-accessibility/recommended",
     // https://github.com/prettier/eslint-config-prettier
     "prettier",
   ],

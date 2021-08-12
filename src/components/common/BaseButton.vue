@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   /**
@@ -44,7 +44,7 @@ const props = defineProps({
 
 const computedClasses = computed(() => {
   return {
-    "hover:bg-teal-600 focus:ring-teal-600 active:bg-teal-600 text-white bg-teal-600":
+    "hover:bg-teal-500 focus:ring-teal-600/50 active:bg-teal-700 text-teal-50 bg-teal-600 transition-colors":
       props.variant === "primary",
     "hover:bg-teal-200 focus:ring-teal-100 active:bg-teal-900 text-teal-500 bg-teal-100":
       props.variant === "secondary",
