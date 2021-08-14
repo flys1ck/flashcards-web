@@ -8,15 +8,7 @@
   "script": {
     "scope": "vue",
     "prefix": "script",
-    "body": [
-      "<script lang=\"ts\">",
-      "import { defineComponent } from 'vue';",
-      "",
-      "export default defineComponent({",
-      "  $2",
-      "});",
-      "</script>"
-    ],
+    "body": ["<script setup lang=\"ts\">", "$2", "</script>"],
     "description": "Create <script> block"
   },
   "style": {

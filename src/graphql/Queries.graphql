@@ -1,0 +1,11 @@
+query GetFeed {
+  feed {
+    id
+    description
+    url
+    postedBy {
+      id
+      name
+    }
+  }
+}
