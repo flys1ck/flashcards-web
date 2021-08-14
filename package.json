@@ -1,9 +1,11 @@
 {
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
+    "dev:docker": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview",
+    "serve": "vite preview --host",
+    "serve:docker": "docker-compose up -d --build",
     "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
     "fixlint": "eslint --ext .ts,vue --ignore-path .gitignore . --fix"
   },
@@ -31,9 +33,10 @@
     "vue-router": "^4.0.11"
   },
   "devDependencies": {
+    "@types/node": "^16.6.1",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
-    "@vitejs/plugin-vue": "^1.2.4",
+    "@vitejs/plugin-vue": "^1.4.0",
     "@vue/compiler-sfc": "^3.2.1",
     "autoprefixer": "^10.3.1",
     "eslint": "^7.32.0",

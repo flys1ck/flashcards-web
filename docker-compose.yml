@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  flashcards-web:
+    container_name: flashcards-web
+    depends_on:
+      - flashcards-api
+    environment:
+      API_HOST: flashcards-api
+      API_PORT: 4000
+    build: .
+    ports:
+      - 5000:5000
+
+  flashcards-api:
+    image: ghcr.io/flys1ck/flashcards-api:latest
+    container_name: flashcards-api
+    ports:
+      - 4000:4000
+
+networks:
+  default:
+    name: flashcards-network

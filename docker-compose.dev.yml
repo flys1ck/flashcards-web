@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  flashcards-web:
+    volumes:
+      - "./src:/usr/flashcards-web/src"
+    ports:
+      - 3000:3000
+    command: ["npm", "run", "dev"]

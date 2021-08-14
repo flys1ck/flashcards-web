@@ -17,4 +17,15 @@ export default defineConfig({
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
   ],
+  server: {
+    proxy: {
+      "/graphql": {
+        target: process.env.CI
+          ? `http://${process.env.API_HOST}:${process.env.API_PORT}`
+          : "http://localhost:4000",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });
