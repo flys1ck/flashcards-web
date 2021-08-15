@@ -2,9 +2,9 @@
 
 <script setup lang="ts">
 import { useQuery } from "@urql/vue";
-import { GetFeedQuery } from "@/generated/graphql";
+import { GetFeedDocument } from "@/generated/graphql";
 
-const { data } = useQuery({ query: GetFeedQuery });
+const { data } = useQuery({ query: GetFeedDocument });
 </script>
 
 <route>
