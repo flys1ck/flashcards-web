@@ -1,11 +1,8 @@
-overwrite: true
 schema: "http://localhost:4000"
-documents: "src/**/*.graphql"
+documents: "src/graphql/*.graphql"
 generates:
   src/generated/graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
-      - "typescript-document-nodes"
-    config:
-      nameSuffix: "Query"
+      - "typed-document-node"
