@@ -8,7 +8,12 @@
     </div>
     <!-- Account -->
     <div>
-      <BaseButton as="router-link" :to="{ name: 'SignUp' }">Sign Up</BaseButton>
+      <!-- Profile -->
+      <div v-if="userStore.isSignedIn">Moini {{ userStore.username }}</div>
+      <!-- Signup Button -->
+      <BaseButton v-else as="router-link" :to="{ name: 'SignUp' }"
+        >Sign Up</BaseButton
+      >
     </div>
   </header>
 </template>
@@ -16,7 +21,11 @@
 <script setup lang="ts">
 import BaseButton from "@components/common/BaseButton.vue";
 import BaseInput from "@components/common/BaseInput.vue";
+
 import { SearchIcon } from "@heroicons/vue/solid";
 
+import { useUserStore } from "@stores/user";
+
+const userStore = useUserStore();
 const icon = SearchIcon;
 </script>

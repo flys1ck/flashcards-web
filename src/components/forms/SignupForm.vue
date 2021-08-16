@@ -45,13 +45,15 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 import { useMutation } from "@urql/vue";
 
-import router from "@modules/router";
+import { useRouter } from "vue-router";
 
 import BaseInput from "@components/common/BaseInput.vue";
 import BaseButton from "@components/common/BaseButton.vue";
 import BaseNotification from "@components/common/BaseNotification.vue";
 
 import { SignupMutationDocument } from "@/generated/graphql";
+
+import { useUserStore } from "@/stores/user";
 
 const formData = reactive({
   username: "",
@@ -70,6 +72,10 @@ const v$ = useVuelidate(rules, formData, { $autoDirty: true });
 const { data, error, fetching, executeMutation: signup } = useMutation(
   SignupMutationDocument
 );
+
+const userStore = useUserStore();
+const router = useRouter();
+
 const onSubmit = async () => {
   v$.value.$touch();
   if (v$.value.$error) return;
@@ -77,7 +83,11 @@ const onSubmit = async () => {
     await signup(formData);
     if (error.value) throw new Error("TODO: Oh no!");
     // TODO
-    console.log(data.value);
+    userStore.$patch({
+      id: data.value?.signup?.user?.id,
+      username: data.value?.signup?.user?.name,
+      email: data.value?.signup?.user?.email,
+    });
     // redirect to new page
     router.push("/");
   } catch (e) {

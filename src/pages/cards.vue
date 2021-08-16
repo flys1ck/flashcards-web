@@ -7,3 +7,11 @@
 <script setup lang="ts">
 import CardEditor from "@/components/CardEditor.vue";
 </script>
+
+<route>
+  {
+    meta: {
+      requiresAuth: true
+    }
+  }
+  </route>
