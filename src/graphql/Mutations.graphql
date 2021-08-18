@@ -3,11 +3,22 @@ mutation SignupMutation(
   $password: String!
   $username: String!
 ) {
-  signup(email: $email, password: $password, name: $username) {
-    token
+  signup(email: $email, password: $password, username: $username) {
+    accessToken
     user {
       id
-      name
+      username
+      email
+    }
+  }
+}
+
+mutation SigninMutation($password: String!, $username: String!) {
+  signin(password: $password, username: $username) {
+    accessToken
+    user {
+      id
+      username
       email
     }
   }

@@ -5,7 +5,7 @@ query GetFeed {
     url
     postedBy {
       id
-      name
+      username
     }
   }
 }

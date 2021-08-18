@@ -85,8 +85,9 @@ const onSubmit = async () => {
     // TODO
     userStore.$patch({
       id: data.value?.signup?.user?.id,
-      username: data.value?.signup?.user?.name,
+      username: data.value?.signup?.user?.username,
       email: data.value?.signup?.user?.email,
+      accessToken: data.value?.signup?.accessToken,
     });
     // redirect to new page
     router.push("/");

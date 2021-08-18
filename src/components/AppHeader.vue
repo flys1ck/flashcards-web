@@ -9,16 +9,20 @@
     <!-- Account -->
     <div>
       <!-- Profile -->
-      <div v-if="userStore.isSignedIn">Moini {{ userStore.username }}</div>
+      <AccountMenu v-if="userStore.isSignedIn"></AccountMenu>
       <!-- Signup Button -->
-      <BaseButton v-else as="router-link" :to="{ name: 'SignUp' }"
-        >Sign Up</BaseButton
-      >
+      <div v-else class="space-x-2">
+        <BaseButton as="router-link" to="/signup" variant="secondary"
+          >Sign Up</BaseButton
+        >
+        <BaseButton as="router-link" to="/signin">Sign In</BaseButton>
+      </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import AccountMenu from "@components/AccountMenu.vue";
 import BaseButton from "@components/common/BaseButton.vue";
 import BaseInput from "@components/common/BaseInput.vue";
 

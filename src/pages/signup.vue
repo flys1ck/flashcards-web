@@ -28,9 +28,7 @@ import heroImage from "@assets/images/learn.jpg";
 
 <route>
 {
-  name: "SignUp",
   meta: {
-    requiresAuth: false,
     layout: "blank"
   }
 }

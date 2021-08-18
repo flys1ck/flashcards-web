@@ -6,11 +6,17 @@ const useUserStore = defineStore("User", {
       id: "",
       username: "",
       email: "",
+      accessToken: "",
     };
   },
   getters: {
     isSignedIn: (state) => {
-      return !!state.username;
+      return !!state.accessToken;
+    },
+  },
+  actions: {
+    signout() {
+      this.$reset();
     },
   },
 });

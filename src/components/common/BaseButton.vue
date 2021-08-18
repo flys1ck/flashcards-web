@@ -52,9 +52,9 @@ const props = defineProps({
 
 const computedClasses = computed(() => {
   return {
-    "hover:bg-teal-500 focus:ring-teal-600/50 active:bg-teal-700 text-teal-50 bg-teal-600 transition-colors duration-100":
+    "hover:bg-teal-500 focus:ring-teal-600/50 active:bg-teal-700 text-teal-50 bg-teal-600 transition-colors duration-100 border border-teal-700":
       props.variant === "primary",
-    "hover:bg-teal-200 focus:ring-teal-100 active:bg-teal-900 text-teal-500 bg-teal-100":
+    "hover:bg-teal-200 focus:ring-teal-100 active:bg-teal-900 text-teal-500 bg-teal-100 border border-teal-500":
       props.variant === "secondary",
     "px-3 py-1 text-lg": props.size === "sm",
     "px-4 py-2 text-lg": props.size === "md",
