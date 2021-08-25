@@ -8,3 +8,11 @@ defineProps({
   },
 });
 </script>
+
+<route>
+{
+  meta: {
+    requiresAuth: true
+  }
+}
+</route>

@@ -9,9 +9,8 @@ const { data } = useQuery({ query: GetFeedDocument });
 
 <route>
 {
-  name: "Home",
   meta: {
-    requiresAuth: false
+    requiresAuth: true
   }
 }
 </route>

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex h-screen">
-    <AppAside />
-    <div class="flex flex-col flex-grow overflow-hidden">
-      <AppHeader />
+  <div class="flex flex-col h-screen">
+    <AppHeader />
+    <div class="flex flex-grow overflow-hidden">
+      <AppAside />
       <main class="flex-grow p-8 overflow-auto">
         <router-view />
       </main>
