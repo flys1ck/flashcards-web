@@ -2,9 +2,9 @@
   <div>
     <label :for="name">
       <div :class="labelClasses">
-        <span class="text-sm font-medium">
+        <BaseLabel>
           {{ label }}
-        </span>
+        </BaseLabel>
         <span v-if="isOptional" class="ml-1 text-xs text-gray-500"
           >(optional)</span
         >
@@ -48,6 +48,8 @@
 <script setup lang="ts">
 import { PropType, computed, ref } from "vue";
 import { ErrorObject } from "@vuelidate/core";
+
+import BaseLabel from "@components/common/BaseLabel.vue";
 
 const props = defineProps({
   /** An error object from vuelidate, e.g. `v$.name.$errors`. */
