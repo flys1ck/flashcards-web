@@ -18,9 +18,6 @@
       >Login</BaseButton
     >
   </form>
-  <BaseNotification v-for="(err, index) in error?.graphQLErrors" :key="index">{{
-    err
-  }}</BaseNotification>
 </template>
 
 <script setup lang="ts">
@@ -34,7 +31,10 @@ import BaseButton from "@components/common/BaseButton.vue";
 
 import { SigninMutationDocument } from "@/generated/graphql";
 
-import { useUserStore } from "@/stores/user";
+import { useUserStore } from "@stores/user";
+import { useNotifications } from "@composables/useNotifications";
+
+const { pushNotification } = useNotifications();
 
 const formData = reactive({
   username: "",
@@ -61,8 +61,7 @@ const onSubmit = async () => {
     // redirect to new page
     router.push("/");
   } catch (e) {
-    // TODO
-    console.log(e);
+    pushNotification({ content: error.value?.message, type: "error" });
   }
 };
 </script>

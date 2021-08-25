@@ -7,9 +7,9 @@ import SigninForm from "@components/forms/SigninForm.vue";
 </script>
 
 <route>
-  {
-    meta: {
-      layout: "blank"
-    }
+{
+  meta: {
+    layout: "blank"
   }
-  </route>
+}
+</route>
