@@ -1,15 +1,20 @@
 <template>
   <header
-    class="bg-gray-50 flex items-center justify-between flex-none h-20 px-8"
+    class="flex items-center justify-between flex-none h-20 px-8 bg-gray-200"
   >
     <!-- Search -->
-    <div>
+    <div class="flex items-center space-x-4">
+      <router-link class="text-4xl font-bold text-teal-600" to="/"
+        >Flashcards.io</router-link
+      >
       <BaseInput type="search" name="search" :icon="icon" />
     </div>
     <!-- Account -->
     <div>
       <!-- Profile -->
-      <AccountMenu v-if="userStore.isSignedIn"></AccountMenu>
+      <div v-if="userStore.isSignedIn">
+        <AccountMenu></AccountMenu>
+      </div>
       <!-- Signup Button -->
       <div v-else class="space-x-2">
         <BaseButton as="router-link" to="/signup" variant="secondary"

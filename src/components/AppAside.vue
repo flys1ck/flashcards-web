@@ -5,7 +5,6 @@
     <div>
       <!-- brand and deck selection -->
       <div class="px-4 mt-6">
-        <div class="text-4xl font-bold text-teal-600">Flashcards.io</div>
         <div class="flex items-baseline justify-between mt-6">
           <BaseHeading as="h2" size="xs">Decks</BaseHeading>
           <BaseLink as="router-link" to="/decks/new">New</BaseLink>
