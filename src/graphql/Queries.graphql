@@ -9,3 +9,14 @@ query GetFeed {
     }
   }
 }
+
+query RefreshAccessToken {
+  refreshAccessToken {
+    accessToken
+    user {
+      id
+      username
+      email
+    }
+  }
+}
