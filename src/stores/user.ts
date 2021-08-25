@@ -14,11 +14,6 @@ const useUserStore = defineStore("User", {
       return !!state.accessToken;
     },
   },
-  actions: {
-    signout() {
-      this.$reset();
-    },
-  },
 });
 
 export { useUserStore };
