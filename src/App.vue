@@ -7,7 +7,7 @@
 import { onBeforeMount } from "vue";
 import { useQuery } from "@urql/vue";
 import { RefreshAccessTokenDocument } from "@generated/graphql";
-import { useUserStore } from "@stores/user";
+import { useUserStore } from "@stores/useUserStore";
 import BaseNotifications from "@components/common/BaseNotifications.vue";
 
 const userStore = useUserStore();

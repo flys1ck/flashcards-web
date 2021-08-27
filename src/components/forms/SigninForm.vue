@@ -31,10 +31,10 @@ import BaseButton from "@components/common/BaseButton.vue";
 
 import { SigninMutationDocument } from "@/generated/graphql";
 
-import { useUserStore } from "@stores/user";
-import { useNotifications } from "@composables/useNotifications";
+import { useUserStore } from "@stores/useUserStore";
+import { useNotificationStore } from "@stores/useNotificationStore";
 
-const { pushNotification } = useNotifications();
+const { pushNotification } = useNotificationStore();
 
 const formData = reactive({
   username: "",

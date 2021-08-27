@@ -33,7 +33,7 @@ import BaseInput from "@components/common/BaseInput.vue";
 
 import { SearchIcon } from "@heroicons/vue/solid";
 
-import { useUserStore } from "@stores/user";
+import { useUserStore } from "@/stores/useUserStore";
 
 const userStore = useUserStore();
 const icon = SearchIcon;

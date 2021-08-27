@@ -31,7 +31,7 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
-import { useUserStore } from "@stores/user";
+import { useUserStore } from "@/stores/useUserStore";
 
 const router = useRouter();
 const userStore = useUserStore();

@@ -1,8 +1,8 @@
 <template>
-  <div v-if="notifications.length" class="relative">
+  <div v-if="notificationStore.notificationCount" class="relative">
     <div class="absolute bottom-0 right-0 mb-12 mr-12 space-y-2">
       <div
-        v-for="notification in notifications"
+        v-for="notification in notificationStore.notifications"
         :key="notification.id"
         :type="notification.type"
         class="flex justify-end shadow"
@@ -10,7 +10,7 @@
         <button
           class="px-4 py-2 rounded"
           :class="notificationClasses(notification.type)"
-          @click="notification.onDismiss(notification.id)"
+          @click="notificationStore.popNotification(notification.id)"
         >
           {{ notification.content }}
         </button>
@@ -20,9 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import { useNotifications } from "@composables/useNotifications";
-
-const { notifications } = useNotifications();
+import { useNotificationStore } from "@stores/useNotificationStore";
+const notificationStore = useNotificationStore();
+notificationStore.pushNotification({ content: "hi", type: "warning" });
 
 const notificationClasses = (type: "warning" | "error" | "success") => {
   return {
