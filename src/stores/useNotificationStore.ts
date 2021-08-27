@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 interface NotificationOptions {
   content: string | undefined;
   type: "warning" | "error" | "success";
+  timeout?: number;
 }
 
 interface Notification extends NotificationOptions {
@@ -23,11 +24,17 @@ const useNotificationStore = defineStore("notifications", {
   },
   actions: {
     pushNotification(options: NotificationOptions) {
-      this.notifications.push({
+      const notification: Notification = {
         id: this.nextId++,
         content: options.content,
         type: options.type,
-      });
+        timeout: options.timeout || 5000,
+      };
+      this.notifications.push(notification);
+
+      setTimeout(() => {
+        this.popNotification(notification.id);
+      }, notification.timeout);
     },
     popNotification(notificationId: number) {
       const i = this.notifications.findIndex((n) => n.id === notificationId);

@@ -7,11 +7,17 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      animation: {
+        progress: "progress linear 1 forwards",
+      },
       colors: {
         teal: colors.teal,
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
+      keyframes: {
+        progress: { "0%": { width: "100%" }, "100%": { width: "0%" } },
       },
       transitionProperty: {
         width: "width",
