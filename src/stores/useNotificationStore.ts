@@ -9,10 +9,11 @@ interface Notification extends NotificationOptions {
   id: number;
 }
 
-const useNotificationStore = defineStore("Notifications", {
+const useNotificationStore = defineStore("notifications", {
   state: () => {
     return {
       notifications: [] as Notification[],
+      nextId: 0,
     };
   },
   getters: {
@@ -23,7 +24,7 @@ const useNotificationStore = defineStore("Notifications", {
   actions: {
     pushNotification(options: NotificationOptions) {
       this.notifications.push({
-        id: 1,
+        id: this.nextId++,
         content: options.content,
         type: options.type,
       });
