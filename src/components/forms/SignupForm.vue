@@ -50,9 +50,7 @@ import BaseButton from "@components/common/BaseButton.vue";
 import { SignupMutationDocument } from "@/generated/graphql";
 
 import { useUserStore } from "@/stores/useUserStore";
-import { useNotificationStore } from "@stores/useNotificationStore";
-
-const { pushNotification } = useNotificationStore();
+import { handleApiError } from "@/utilities/handleApiError";
 
 const formData = reactive({
   username: "",
@@ -80,18 +78,11 @@ const onSubmit = async () => {
   if (v$.value.$error) return;
   try {
     await signup(formData);
-    if (error.value) throw new Error("TODO: Oh no!");
-    // TODO
-    userStore.$patch({
-      id: data.value?.signup?.user?.id,
-      username: data.value?.signup?.user?.username,
-      email: data.value?.signup?.user?.email,
-      accessToken: data.value?.signup?.accessToken,
-    });
-    // redirect to new page
+    if (error.value) throw error.value;
+    userStore.signup(data.value);
     router.push("/");
   } catch (e) {
-    pushNotification({ content: error.value?.message, type: "error" });
+    handleApiError(e);
   }
 };
 </script>

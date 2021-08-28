@@ -1,5 +1,5 @@
 <template>
-  <component :is="as" class="font-semibold text-teal-600">
+  <component :is="as" class="inline-block font-semibold text-teal-600">
     <slot />
   </component>
 </template>

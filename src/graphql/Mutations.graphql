@@ -23,3 +23,7 @@ mutation SigninMutation($password: String!, $username: String!) {
     }
   }
 }
+
+mutation SignoutMutation {
+  signout
+}

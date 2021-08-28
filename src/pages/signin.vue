@@ -1,27 +1,25 @@
 <template>
-  <SigninForm />
+  <BaseHeading as="h1" size="xl">Sign In</BaseHeading>
+  <SigninForm class="mt-4" />
+  <BaseLink class="mt-4 text-center" as="router-link" to="/signup"
+    >Not a member? Sign up now</BaseLink
+  >
 </template>
 
 <script setup lang="ts">
+import BaseHeading from "@components/common/BaseHeading.vue";
+import BaseLink from "@components/common/BaseLink.vue";
 import SigninForm from "@components/forms/SigninForm.vue";
 import { useUserStore } from "@stores/useUserStore";
-import { useNotificationStore } from "@/stores/useNotificationStore";
 
 const userStore = useUserStore();
-const notificationStore = useNotificationStore();
-if (userStore.isSignedIn) {
-  userStore.$reset();
-  notificationStore.pushNotification({
-    content: "You have been signed out!",
-    type: "info",
-  });
-}
+userStore.signout();
 </script>
 
 <route>
 {
   meta: {
-    layout: "blank"
+    layout: "auth"
   }
 }
 </route>

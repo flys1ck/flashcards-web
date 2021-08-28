@@ -32,9 +32,7 @@ import BaseButton from "@components/common/BaseButton.vue";
 import { SigninMutationDocument } from "@/generated/graphql";
 
 import { useUserStore } from "@stores/useUserStore";
-import { useNotificationStore } from "@stores/useNotificationStore";
-
-const { pushNotification } = useNotificationStore();
+import { handleApiError } from "@/utilities/handleApiError";
 
 const formData = reactive({
   username: "",
@@ -51,17 +49,11 @@ const router = useRouter();
 const onSubmit = async () => {
   try {
     await signin(formData);
-    if (error.value) throw new Error("TODO: Oh no!");
-    // TODO
-    userStore.$patch({
-      id: data.value?.signin?.user?.id,
-      username: data.value?.signin?.user?.username,
-      accessToken: data.value?.signin?.accessToken,
-    });
-    // redirect to new page
+    if (error.value) throw error.value;
+    userStore.signin(data.value);
     router.push("/");
   } catch (e) {
-    pushNotification({ content: error.value?.message, type: "error" });
+    handleApiError(e);
   }
 };
 </script>

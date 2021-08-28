@@ -1,47 +1,25 @@
 <template>
-  <div class="grid flex-grow grid-cols-3 bg-gray-100">
-    <!-- sign up form -->
-    <div class="px-12 my-auto">
-      <router-link to="/" class="font-medium text-teal-600"
-        >&larr; Back to Home</router-link
-      >
-      <BaseHeading as="h1" size="xl">Create your account</BaseHeading>
-      <SignupForm />
-    </div>
-    <!-- image -->
-    <div class="max-h-screen col-span-2">
-      <img
-        :src="heroImage"
-        alt="man wearing a book as head"
-        class="brightness-75 object-cover h-full"
-      />
-    </div>
-  </div>
+  <BaseHeading as="h1" size="xl">Create your account</BaseHeading>
+  <SignupForm class="mt-4" />
+  <BaseLink class="mt-4 text-center" as="router-link" to="/signin"
+    >Already a member? Sign in</BaseLink
+  >
 </template>
 
 <script setup lang="ts">
 import BaseHeading from "@components/common/BaseHeading.vue";
+import BaseLink from "@components/common/BaseLink.vue";
 import SignupForm from "@components/forms/SignupForm.vue";
-
-import heroImage from "@assets/images/learn.jpg";
 import { useUserStore } from "@stores/useUserStore";
-import { useNotificationStore } from "@/stores/useNotificationStore";
 
 const userStore = useUserStore();
-const notificationStore = useNotificationStore();
-if (userStore.isSignedIn) {
-  userStore.$reset();
-  notificationStore.pushNotification({
-    content: "You have been signed out.",
-    type: "info",
-  });
-}
+userStore.signout();
 </script>
 
 <route>
 {
   meta: {
-    layout: "blank"
+    layout: "auth"
   }
 }
 </route>

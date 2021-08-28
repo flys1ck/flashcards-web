@@ -59,7 +59,7 @@ const computedClasses = computed(() => {
     "px-3 py-1 text-lg": props.size === "sm",
     "px-4 py-2 text-lg": props.size === "md",
     "px-5 py-3 text-xl": props.size === "lg",
-    "opacity-50": props.isLoading,
+    "opacity-50 cursor-wait": props.isLoading,
   };
 });
 </script>

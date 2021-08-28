@@ -18,7 +18,8 @@
       </button>
     </div>
     <div
-      class="animate-progress absolute bottom-0 h-0.5 bg-gray-300"
+      class="animate-progress absolute bottom-0 h-0.5"
+      :class="accentbackgroundClass"
       :style="progressbarStyles"
     ></div>
   </div>

@@ -18,7 +18,8 @@
       "@composables/*": ["src/composables/*"],
       "@generated/*": ["src/generated/*"],
       "@modules/*": ["src/modules/*"],
-      "@stores/*": ["src/stores/*"]
+      "@stores/*": ["src/stores/*"],
+      "@utilities/*": ["src/utilities/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
