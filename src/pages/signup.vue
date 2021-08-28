@@ -21,9 +21,21 @@
 
 <script setup lang="ts">
 import BaseHeading from "@components/common/BaseHeading.vue";
-import SignupForm from "@/components/forms/SignupForm.vue";
+import SignupForm from "@components/forms/SignupForm.vue";
 
 import heroImage from "@assets/images/learn.jpg";
+import { useUserStore } from "@stores/useUserStore";
+import { useNotificationStore } from "@/stores/useNotificationStore";
+
+const userStore = useUserStore();
+const notificationStore = useNotificationStore();
+if (userStore.isSignedIn) {
+  userStore.$reset();
+  notificationStore.pushNotification({
+    content: "You have been signed out.",
+    type: "info",
+  });
+}
 </script>
 
 <route>

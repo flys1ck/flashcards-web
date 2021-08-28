@@ -1,8 +1,8 @@
 <template>
   <router-view></router-view>
-  <BaseNotifications />
+  <AppNotificationContainer />
 </template>
 
 <script setup lang="ts">
-import BaseNotifications from "@components/common/BaseNotifications.vue";
+import AppNotificationContainer from "@components/AppNotificationContainer.vue";
 </script>

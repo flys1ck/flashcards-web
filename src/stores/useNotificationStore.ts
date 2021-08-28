@@ -2,11 +2,12 @@ import { defineStore } from "pinia";
 
 interface NotificationOptions {
   content: string | undefined;
-  type: "warning" | "error" | "success";
+  type: "warning" | "error" | "success" | "info";
   timeout?: number;
+  onDismiss?(): void;
 }
 
-interface Notification extends NotificationOptions {
+export interface Notification extends NotificationOptions {
   id: number;
 }
 
@@ -24,14 +25,18 @@ const useNotificationStore = defineStore("notifications", {
   },
   actions: {
     pushNotification(options: NotificationOptions) {
+      const id = this.nextId++;
       const notification: Notification = {
-        id: this.nextId++,
+        id: id,
         content: options.content,
         type: options.type,
         timeout: options.timeout || 5000,
+        onDismiss: () => {
+          if (options.onDismiss) options.onDismiss();
+          this.popNotification(id);
+        },
       };
       this.notifications.push(notification);
-
       setTimeout(() => {
         this.popNotification(notification.id);
       }, notification.timeout);
