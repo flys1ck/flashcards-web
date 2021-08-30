@@ -65,7 +65,7 @@ const useUserStore = defineStore("user", {
         );
         try {
           await signout({});
-          if (error) throw error;
+          if (error.value) throw error.value;
         } catch (e) {
           handleApiError(e);
         }

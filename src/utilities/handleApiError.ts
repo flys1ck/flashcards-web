@@ -9,7 +9,7 @@ function handleApiError(error: CombinedError): void {
     pushNotification({ type: "error", content: error.message });
   } else {
     pushNotification({ type: "error", content: "Ooops! Something went wrong" });
-    console.log(error.message);
+    console.log(error);
   }
 
   return;
