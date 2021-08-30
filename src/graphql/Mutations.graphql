@@ -27,3 +27,13 @@ mutation SigninMutation($password: String!, $username: String!) {
 mutation SignoutMutation {
   signout
 }
+
+mutation CreateDeckMutation(
+  $name: String!
+  $description: String
+  $visibility: String!
+) {
+  createDeck(name: $name, description: $description, visibility: $visibility) {
+    name
+  }
+}

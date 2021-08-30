@@ -9,9 +9,9 @@ import NewDeckForm from "@components/forms/NewDeckForm.vue";
 </script>
 
 <route>
-  {
-    meta: {
-      layout: "header"
-    }
+{
+  meta: {
+    layout: "header"
   }
-  </route>
+}
+</route>
