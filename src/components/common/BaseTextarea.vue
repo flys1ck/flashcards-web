@@ -2,11 +2,12 @@
   <div>
     <label :for="name">
       <BaseLabel>{{ label }}</BaseLabel>
+      <span v-if="isOptional" class="ml-1 text-xs text-gray-500"
+        >(optional)</span
+      >
       <textarea
         :id="name"
         name="heyo"
-        cols="30"
-        rows="10"
         class="focus:ring-2 w-full text-lg rounded shadow-sm"
         :class="inputClasses"
         :value="modelValue"
