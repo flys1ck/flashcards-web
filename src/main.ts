@@ -1,12 +1,12 @@
 import { createApp } from "vue";
-import router from "@modules/router";
 import pinia from "@modules/pinia";
-import urql from "@urql/vue";
+import urql, { URQL_OPTIONS } from "@modules/urql";
+import router from "@modules/router";
 import App from "@/App.vue";
 import "@assets/styles/tailwind.css";
 
-createApp(App)
-  .use(router)
-  .use(pinia)
-  .use(urql, { url: "http://localhost:3000/graphql" })
-  .mount("#app");
+const app = createApp(App);
+app.use(urql, URQL_OPTIONS);
+app.use(pinia);
+app.use(router);
+app.mount("#app");
