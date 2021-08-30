@@ -28,6 +28,17 @@ mutation SignoutMutation {
   signout
 }
 
+mutation RefreshAccessToken {
+  refreshAccessToken {
+    accessToken
+    user {
+      id
+      username
+      email
+    }
+  }
+}
+
 mutation CreateDeckMutation(
   $name: String!
   $description: String

@@ -43,7 +43,7 @@ const useUserStore = defineStore("user", {
       const client = createClient({ url: "http://localhost:3000/graphql" });
       try {
         const { data, error } = await client
-          .query(RefreshAccessTokenDocument)
+          .mutation(RefreshAccessTokenDocument)
           .toPromise();
         if (error) throw error;
         this.$patch({

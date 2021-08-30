@@ -1,10 +1,7 @@
-<template>Henlo {{ data }}</template>
+<template>Henlo</template>
 
 <script setup lang="ts">
-import { useQuery } from "@urql/vue";
-import { GetFeedDocument } from "@generated/graphql";
-
-const { data } = useQuery({ query: GetFeedDocument });
+// import { useQuery } from "@urql/vue";
 </script>
 
 <route>
