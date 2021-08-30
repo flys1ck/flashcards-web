@@ -37,7 +37,7 @@ const userStore = useUserStore();
 const accountMenuLinks = reactive([
   {
     name: "Profile",
-    to: "/profile",
+    to: `/u/${userStore.username}`,
   },
   {
     name: "Settings",
