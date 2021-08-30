@@ -37,9 +37,6 @@ const useNotificationStore = defineStore("notifications", {
         },
       };
       this.notifications.push(notification);
-      setTimeout(() => {
-        this.popNotification(notification.id);
-      }, notification.timeout);
     },
     popNotification(notificationId: number) {
       const i = this.notifications.findIndex((n) => n.id === notificationId);

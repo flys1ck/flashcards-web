@@ -1,5 +1,5 @@
 <template>
-  <div class="w-96 bg-gray-50 relative overflow-hidden border rounded shadow">
+  <div class="w-96 group bg-gray-50 relative border rounded shadow">
     <div class="flex items-center justify-between px-2 py-2">
       <div class="flex items-stretch">
         <div class="w-1 rounded" :class="accentbackgroundClass"></div>
@@ -18,9 +18,10 @@
       </button>
     </div>
     <div
-      class="animate-progress absolute bottom-0 h-0.5"
+      class="animate-progress absolute bottom-0 h-0.5 group-hover:animation-paused"
       :class="accentbackgroundClass"
       :style="progressbarStyles"
+      @animationend="notification.onDismiss"
     ></div>
   </div>
 </template>

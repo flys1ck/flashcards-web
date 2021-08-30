@@ -7,3 +7,11 @@ html,
 body {
   @apply overflow-hidden;
 }
+
+@layer utilities {
+  @variants group-hover {
+    .animation-paused {
+      animation-play-state: paused;
+    }
+  }
+}
