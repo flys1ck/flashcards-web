@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, START_LOCATION } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 import { setupLayouts } from "virtual:generated-layouts";
 import generatedRoutes from "virtual:generated-pages";
@@ -12,12 +12,8 @@ const router = createRouter({
   routes: routes,
 });
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
   const userStore = useUserStore();
-  //refresh access token when the app gets initialized
-  if (from === START_LOCATION) {
-    await userStore.refreshAccessToken();
-  }
   if (to.meta.requiresAuth && !userStore.isSignedIn) return "/signin";
 });
 

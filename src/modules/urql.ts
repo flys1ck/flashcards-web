@@ -12,12 +12,10 @@ interface AuthState {
   accessToken: string;
 }
 
-export const AUTH_EXCHANGE_CONFIG: AuthConfig<AuthState> = {
+const AUTH_EXCHANGE_CONFIG: AuthConfig<AuthState> = {
   getAuth: async ({ authState }) => {
     if (!authState) {
       const userStore = useUserStore();
-      await userStore.refreshAccessToken();
-      console.log("getAuth:", userStore.$state);
       const accessToken = userStore.accessToken;
       if (accessToken) return { accessToken };
     }
