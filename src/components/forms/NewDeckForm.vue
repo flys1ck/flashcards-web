@@ -5,6 +5,8 @@
       type="text"
       label="Name"
       name="username"
+      :errors="v$.name.$errors"
+      :is-invalid="v$.name.$dirty && v$.name.$invalid"
     />
     <BaseTextarea
       v-model="formData.description"
@@ -12,6 +14,7 @@
       type="text"
       label="Description"
       name="password"
+      :is-optional="true"
     >
     </BaseTextarea>
     <VisibilityRadioGroup v-model="formData.visibility" />
@@ -19,11 +22,12 @@
       >Create deck</BaseButton
     >
   </form>
-  {{ data }}
 </template>
 
 <script setup lang="ts">
 import { reactive } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 import { useMutation } from "@urql/vue";
 import BaseInput from "@components/common/BaseInput.vue";
 import BaseButton from "@components/common/BaseButton.vue";
@@ -39,12 +43,20 @@ const formData = reactive({
   visibility: "private",
 });
 
-const { data, error, fetching, executeMutation: createDeck } = useMutation(
+const rules = {
+  name: { required },
+  visibility: { required },
+};
+
+const v$ = useVuelidate(rules, formData, { $autoDirty: true });
+
+const { error, fetching, executeMutation: createDeck } = useMutation(
   CreateDeckMutationDocument
 );
 
 const onSubmit = async () => {
-  // TODO validate
+  v$.value.$touch();
+  if (v$.value.$error) return;
   try {
     await createDeck(formData);
     if (error.value) throw error.value;
