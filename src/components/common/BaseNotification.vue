@@ -1,12 +1,14 @@
 <template>
-  <div class="w-96 group bg-gray-50 relative border rounded shadow">
+  <div class="group bg-gray-50 relative border rounded shadow">
     <div class="flex items-center justify-between px-2 py-2">
       <div class="flex items-stretch">
         <div class="w-1 rounded" :class="accentbackgroundClass"></div>
         <div class="flex items-center justify-center px-3">
           <component :is="icon" class="w-7 h-7" :class="accentTextClass" />
         </div>
-        <span class="py-2 font-medium text-gray-600">
+        <span
+          class="overflow-ellipsis w-56 py-2 overflow-hidden font-medium text-gray-600"
+        >
           {{ notification.content }}
         </span>
       </div>

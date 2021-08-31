@@ -1,11 +1,11 @@
 <template>
-  <Listbox v-model="selectedPerson" as="div">
+  <Listbox v-if="data" v-model="selectedDeck" as="div">
     <div class="relative">
       <ListboxButton
         class="flex items-center justify-between w-full px-3 py-3 text-left bg-white border rounded"
       >
         <span class="overflow-ellipsis w-full overflow-hidden">{{
-          selectedPerson.name
+          selectedDeck
         }}</span>
         <SelectorIcon class="w-5 h-5 text-teal-600" />
       </ListboxButton>
@@ -18,10 +18,10 @@
           class="absolute z-10 w-full mt-2 overflow-x-hidden bg-white border rounded shadow"
         >
           <ListboxOption
-            v-for="person in people"
+            v-for="deck in data.getDecks"
             v-slot="{ selected, active }"
-            :key="person.id"
-            :value="person"
+            :key="deck.id"
+            :value="deck.name"
             as="template"
           >
             <li
@@ -37,7 +37,7 @@
               <span
                 class="overflow-ellipsis pl-6 overflow-hidden"
                 :class="{ 'font-medium': selected }"
-                >{{ person.name }}</span
+                >{{ deck.name }}</span
               >
             </li>
           </ListboxOption>
@@ -56,10 +56,10 @@ import {
   ListboxOption,
 } from "@headlessui/vue";
 import { SelectorIcon, CheckIcon } from "@heroicons/vue/solid";
+import { useQuery } from "@urql/vue";
+import { GetDecksDocument } from "@generated/graphql";
 
-const people = [
-  { id: 1, name: "Training für Programmierwettbewerbe" },
-  { id: 2, name: "Analysis" },
-];
-const selectedPerson = ref(people[0]);
+const { data } = await useQuery({ query: GetDecksDocument });
+
+const selectedDeck = ref(null);
 </script>
