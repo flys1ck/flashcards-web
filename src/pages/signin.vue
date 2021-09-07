@@ -10,10 +10,6 @@
 import BaseHeading from "@components/common/BaseHeading.vue";
 import BaseLink from "@components/common/BaseLink.vue";
 import SigninForm from "@components/forms/SigninForm.vue";
-import { useUserStore } from "@stores/useUserStore";
-
-const userStore = useUserStore();
-userStore.signout();
 </script>
 
 <route>
