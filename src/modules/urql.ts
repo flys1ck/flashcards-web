@@ -1,28 +1,29 @@
-import urql, {
+import {
+  createClient,
   dedupExchange,
-  cacheExchange,
+  errorExchange,
   fetchExchange,
   makeOperation,
+  ClientOptions,
+  CombinedError,
+  Client,
 } from "@urql/vue";
+import { cacheExchange } from "@urql/exchange-graphcache";
 import { authExchange, AuthConfig } from "@urql/exchange-auth";
 
-import { useUserStore } from "@/stores/useUserStore";
+import { useUserStore } from "@stores/useUserStore";
 
 interface AuthState {
   accessToken: string;
 }
 
 const AUTH_EXCHANGE_CONFIG: AuthConfig<AuthState> = {
-  getAuth: async ({ authState }) => {
-    if (!authState) {
-      const userStore = useUserStore();
-      const accessToken = userStore.accessToken;
-      if (accessToken) return { accessToken };
-    }
+  getAuth: async () => {
     return null;
   },
-  addAuthToOperation: ({ authState, operation }) => {
-    if (!authState || !authState.accessToken) return operation;
+  addAuthToOperation: ({ operation }) => {
+    const userStore = useUserStore();
+    if (!userStore.accessToken) return operation;
 
     const fetchOptions =
       typeof operation.context.fetchOptions === "function"
@@ -35,25 +36,40 @@ const AUTH_EXCHANGE_CONFIG: AuthConfig<AuthState> = {
         ...fetchOptions,
         headers: {
           ...fetchOptions.headers,
-          Authorization: `Bearer ${authState.accessToken}`,
+          Authorization: `Bearer ${userStore.accessToken}`,
         },
       },
     });
   },
   didAuthError: ({ error }) => {
-    // TODO
+    // when an forbidden error is detected getAuth() is called again
     return error.graphQLErrors.some((e) => e.extensions?.code === "FORBIDDEN");
   },
 };
 
-const URQL_OPTIONS = {
+const ERROR_EXCHANGE_CONFIG = {
+  onError: (error: CombinedError) => {
+    const isAuthError = error.graphQLErrors.some(
+      (e) => e.extensions?.code === "FORBIDDEN"
+    );
+
+    if (isAuthError) {
+      console.log("We should probably log you out lol");
+    }
+  },
+};
+
+const URQL_OPTIONS: ClientOptions = {
   url: "http://localhost:3000/graphql",
   exchanges: [
     dedupExchange,
-    cacheExchange,
+    cacheExchange({}),
+    errorExchange(ERROR_EXCHANGE_CONFIG),
     authExchange<AuthState>(AUTH_EXCHANGE_CONFIG),
     fetchExchange,
   ],
 };
 
-export { urql as default, URQL_OPTIONS };
+const client: Client = createClient(URQL_OPTIONS);
+
+export { client, URQL_OPTIONS };
