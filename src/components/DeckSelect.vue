@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -58,8 +58,22 @@ import {
 import { SelectorIcon, CheckIcon } from "@heroicons/vue/solid";
 import { useQuery } from "@urql/vue";
 import { GetDecksDocument } from "@generated/graphql";
+import { useRouter, useRoute } from "vue-router";
 
+const router = useRouter();
+const route = useRoute();
 const { data } = await useQuery({ query: GetDecksDocument });
 
-const selectedDeck = ref(null);
+const selectedDeck = ref(route.params.deck);
+// navigate route to selected deck, when value changes
+watch(selectedDeck, (value) => {
+  router.push({
+    name: "deck",
+    params: {
+      username: data.value?.getDecks.find((deck) => deck.name === value)?.author
+        .username,
+      deck: value,
+    },
+  });
+});
 </script>
