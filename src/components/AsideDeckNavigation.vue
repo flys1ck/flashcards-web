@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
-
+import { useRoute } from "vue-router";
 import {
   CollectionIcon,
   CogIcon,
@@ -33,10 +33,13 @@ import {
   ChartPieIcon,
   PlayIcon,
 } from "@heroicons/vue/solid";
+
 import AsideLink from "@components/AsideLink.vue";
 import BaseLink from "@components/common/BaseLink.vue";
 import BaseHeading from "@components/common/BaseHeading.vue";
 import DeckSelect from "@components/DeckSelect.vue";
+
+const route = useRoute();
 
 const navigationLinks = reactive([
   {
@@ -61,7 +64,13 @@ const navigationLinks = reactive([
   },
   {
     name: "Settings",
-    to: "/settings",
+    to: {
+      name: "deck-settings",
+      params: {
+        username: route.params.username,
+        deck: route.params.deck,
+      },
+    },
     icon: CogIcon,
   },
 ]);
