@@ -45,6 +45,7 @@ mutation CreateDeckMutation(
   $visibility: String!
 ) {
   createDeck(name: $name, description: $description, visibility: $visibility) {
+    id
     name
   }
 }

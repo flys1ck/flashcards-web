@@ -2,5 +2,17 @@ query GetDecks {
   getDecks {
     id
     name
+    author {
+      username
+    }
+  }
+}
+
+query GetDeckByNameAndAuthor($name: String!, $author: String!) {
+  getDeckByNameAndAuthor(name: $name, author: $author) {
+    id
+    name
+    description
+    visibility
   }
 }
