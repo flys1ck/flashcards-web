@@ -18,9 +18,9 @@
       </MenuItem>
       <hr />
       <MenuItem>
-        <router-link class="hover:bg-gray-200 flex px-4 py-2" to="/signin"
-          >Sign Out</router-link
-        >
+        <button class="hover:bg-gray-200 flex px-4 py-2" @click="onSignout">
+          Sign Out
+        </button>
       </MenuItem>
     </MenuItems>
   </Menu>
@@ -29,11 +29,18 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { CombinedError, useMutation } from "@urql/vue";
 
-import { useUserStore } from "@/stores/useUserStore";
+import { SignoutMutationDocument } from "@generated/graphql";
+import { useNotificationStore } from "@stores/useNotificationStore";
+import { useUserStore } from "@stores/useUserStore";
 
+import { handleApiError } from "@utilities/handleApiError";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const userStore = useUserStore();
-
+const notificationStore = useNotificationStore();
 const accountMenuLinks = reactive([
   {
     name: "Profile",
@@ -44,4 +51,22 @@ const accountMenuLinks = reactive([
     to: "/settings",
   },
 ]);
+const { executeMutation: signoutMutation } = useMutation(
+  SignoutMutationDocument
+);
+
+const onSignout = async () => {
+  try {
+    const { error } = await signoutMutation({});
+    if (error) throw error;
+    router.push("/signin");
+    userStore.signout();
+    notificationStore.pushNotification({
+      content: "You have been signed out!",
+      type: "info",
+    });
+  } catch (e) {
+    handleApiError(e as CombinedError);
+  }
+};
 </script>

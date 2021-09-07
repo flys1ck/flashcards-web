@@ -38,20 +38,18 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
+import { useMutation, CombinedError } from "@urql/vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
-import { useMutation } from "@urql/vue";
-
-import { useRouter } from "vue-router";
 
 import BaseInput from "@components/common/BaseInput.vue";
 import BaseButton from "@components/common/BaseButton.vue";
+import { SignupMutationDocument } from "@generated/graphql";
+import { useUserStore } from "@stores/useUserStore";
+import { handleApiError } from "@utilities/handleApiError";
+import { useRouter } from "vue-router";
 
-import { SignupMutationDocument } from "@/generated/graphql";
-
-import { useUserStore } from "@/stores/useUserStore";
-import { handleApiError } from "@/utilities/handleApiError";
-
+const router = useRouter();
 const formData = reactive({
   username: "",
   password: "",
@@ -66,23 +64,22 @@ const rules = {
 
 const v$ = useVuelidate(rules, formData, { $autoDirty: true });
 
+const userStore = useUserStore();
 const { data, error, fetching, executeMutation: signup } = useMutation(
   SignupMutationDocument
 );
 
-const userStore = useUserStore();
-const router = useRouter();
-
 const onSubmit = async () => {
   v$.value.$touch();
   if (v$.value.$error) return;
+
   try {
     await signup(formData);
     if (error.value) throw error.value;
     userStore.signup(data.value);
     router.push("/");
   } catch (e) {
-    handleApiError(e);
+    handleApiError(e as CombinedError);
   }
 };
 </script>

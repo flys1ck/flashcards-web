@@ -1,13 +1,12 @@
 import { defineStore } from "pinia";
-import { createClient, useMutation } from "@urql/vue";
-import { useNotificationStore } from "@/stores/useNotificationStore";
+import { CombinedError } from "@urql/vue";
 import {
-  SignupMutationMutation,
   SigninMutationMutation,
-  SignoutMutationDocument,
   RefreshAccessTokenDocument,
+  SignupMutationMutation,
 } from "@/generated/graphql";
 import { handleApiError } from "@/utilities/handleApiError";
+import { client } from "@modules/urql";
 
 const useUserStore = defineStore("user", {
   state: () => {
@@ -40,7 +39,6 @@ const useUserStore = defineStore("user", {
       });
     },
     async refreshAccessToken() {
-      const client = createClient({ url: "http://localhost:3000/graphql" });
       try {
         const { data, error } = await client
           .mutation(RefreshAccessTokenDocument)
@@ -53,28 +51,12 @@ const useUserStore = defineStore("user", {
           accessToken: data?.refreshAccessToken?.accessToken,
         });
       } catch (e) {
-        handleApiError(e);
+        handleApiError(e as CombinedError);
       }
       return;
     },
-    async signout() {
-      if (this.isSignedIn) {
-        const notificationStore = useNotificationStore();
-        const { error, executeMutation: signout } = useMutation(
-          SignoutMutationDocument
-        );
-        try {
-          await signout({});
-          if (error.value) throw error.value;
-        } catch (e) {
-          handleApiError(e);
-        }
-        this.$reset();
-        notificationStore.pushNotification({
-          content: "You have been signed out!",
-          type: "info",
-        });
-      }
+    signout() {
+      this.$reset();
     },
   },
 });

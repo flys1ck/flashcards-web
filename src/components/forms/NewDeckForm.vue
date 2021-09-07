@@ -26,9 +26,10 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { useMutation } from "@urql/vue";
+import { CombinedError, useMutation } from "@urql/vue";
 import BaseInput from "@components/common/BaseInput.vue";
 import BaseButton from "@components/common/BaseButton.vue";
 import BaseTextarea from "@components/common/BaseTextarea.vue";
@@ -36,6 +37,7 @@ import VisibilityRadioGroup from "@components/VisibilityRadioGroup.vue";
 
 import { CreateDeckMutationDocument } from "@generated/graphql";
 import { handleApiError } from "@/utilities/handleApiError";
+import { useUserStore } from "@/stores/useUserStore";
 
 const formData = reactive({
   name: "",
@@ -48,8 +50,10 @@ const rules = {
   visibility: { required },
 };
 
-const v$ = useVuelidate(rules, formData, { $autoDirty: true });
+const router = useRouter();
+const userStore = useUserStore();
 
+const v$ = useVuelidate(rules, formData, { $autoDirty: true });
 const { error, fetching, executeMutation: createDeck } = useMutation(
   CreateDeckMutationDocument
 );
@@ -57,12 +61,19 @@ const { error, fetching, executeMutation: createDeck } = useMutation(
 const onSubmit = async () => {
   v$.value.$touch();
   if (v$.value.$error) return;
+
   try {
     await createDeck(formData);
     if (error.value) throw error.value;
+    router.push({
+      name: "deck",
+      params: {
+        username: userStore.username,
+        deck: formData.name,
+      },
+    });
   } catch (e) {
-    handleApiError(e);
+    handleApiError(e as CombinedError);
   }
-  return;
 };
 </script>
