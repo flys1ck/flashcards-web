@@ -74,6 +74,7 @@ const _deck = data.value?.getDecks.find(
 
 const selectedDeck = ref(_deck);
 // navigate route to selected deck, when value changes
+// TODO: breaks on refresh, when on sublink (e.g., http://localhost:3000/-/yi46toh/434534/settings)
 watch(
   selectedDeck,
   (activeDeck) => {
