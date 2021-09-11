@@ -9,9 +9,10 @@ import CardEditor from "@/components/CardEditor.vue";
 </script>
 
 <route>
-  {
-    meta: {
-      requiresAuth: true
-    }
+{
+  name: "deck-cards",
+  meta: {
+    requiresAuth: true
   }
-  </route>
+}
+</route>

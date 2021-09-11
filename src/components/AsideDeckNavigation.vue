@@ -43,22 +43,46 @@ const route = useRoute();
 const navigationLinks = reactive([
   {
     name: "Study",
-    to: "/study",
+    to: {
+      name: "deck-study",
+      params: {
+        username: route.params.username,
+        deck: route.params.deck,
+      },
+    },
     icon: PlayIcon,
   },
   {
     name: "Cards",
-    to: "/cards",
+    to: {
+      name: "deck-cards",
+      params: {
+        username: route.params.username,
+        deck: route.params.deck,
+      },
+    },
     icon: CollectionIcon,
   },
   {
     name: "Statistics",
-    to: "/statistics",
+    to: {
+      name: "deck-statistics",
+      params: {
+        username: route.params.username,
+        deck: route.params.deck,
+      },
+    },
     icon: ChartPieIcon,
   },
   {
     name: "Collaborators",
-    to: "/collaborators",
+    to: {
+      name: "deck-collaborators",
+      params: {
+        username: route.params.username,
+        deck: route.params.deck,
+      },
+    },
     icon: UsersIcon,
   },
   {

@@ -1,6 +1,6 @@
 <template>
   <BaseButton
-    type="destructive"
+    variant="destructive"
     hierarchy="secondary"
     :is-loading="fetching"
     @click="onClick"
