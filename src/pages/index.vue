@@ -1,19 +1,23 @@
 <template>
-  <BaseLink as="router-link" to="/decks/new">New</BaseLink>
-
-  <div class="space-y-2">
+  <div class="flex justify-between">
+    <BaseHeading as="h1" size="xl">Your decks</BaseHeading>
+    <BaseButton as="router-link" to="/decks/new" size="sm">New Deck</BaseButton>
+  </div>
+  <div class="mt-2 space-y-2">
     <div v-for="deck in data?.getDecks" :key="deck.id">
-      <div class="p-2 bg-gray-200 border rounded">
-        <router-link
-          :to="{
-            name: 'deck',
-            params: { username: deck.author.username, deck: deck.name },
-          }"
-          class="font-medium"
+      <router-link
+        :to="{
+          name: 'deck',
+          params: { username: deck.author.username, deck: deck.name },
+        }"
+        class="flex items-center p-4 bg-gray-100 border rounded"
+      >
+        <span class="font-medium">{{ deck.name }}</span>
+        <span
+          class="px-2 py-0.5 ml-2 border border-gray-400 bg-gray-300 rounded-full"
+          >{{ deck.visibility }}</span
         >
-          {{ deck.name }}
-        </router-link>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>

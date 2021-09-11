@@ -1,6 +1,8 @@
 <template>
   <Menu as="div" class="relative">
-    <MenuButton>{{ userStore.username }}</MenuButton>
+    <MenuButton class="rounded-xl p-2 font-bold text-teal-900 bg-teal-200">{{
+      userStore.username
+    }}</MenuButton>
     <MenuItems
       class="whitespace-nowrap absolute right-0 mt-2 bg-white border border-gray-300 rounded shadow"
     >

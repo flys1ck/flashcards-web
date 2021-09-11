@@ -1,14 +1,15 @@
 <template>
   <header
-    class="flex items-center justify-between flex-none h-20 px-8 bg-gray-200"
+    class="flex items-center justify-between flex-none h-20 px-8 bg-teal-900"
   >
-    <!-- Search -->
+    <!-- Brand -->
     <div class="flex items-center space-x-4">
-      <router-link class="text-4xl font-bold text-teal-600" to="/"
-        >Flashcards.io</router-link
+      <router-link class="text-4xl font-bold text-teal-100" to="/"
+        >Kartaki</router-link
       >
-      <BaseInput type="search" name="search" :icon="icon" />
     </div>
+    <!-- Search -->
+    <BaseInput type="search" name="search" :icon="icon" />
     <!-- Account -->
     <div>
       <!-- Profile -->

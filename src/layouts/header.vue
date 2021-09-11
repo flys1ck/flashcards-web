@@ -2,7 +2,9 @@
   <div class="flex flex-col h-screen">
     <AppHeader />
     <main class="flex-grow p-8 overflow-hidden">
-      <router-view />
+      <div class="container mx-auto">
+        <router-view />
+      </div>
     </main>
   </div>
 </template>

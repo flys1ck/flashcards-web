@@ -2,6 +2,7 @@ query GetDecks {
   getDecks {
     id
     name
+    visibility
     author {
       id
       username
