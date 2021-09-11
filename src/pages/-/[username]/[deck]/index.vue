@@ -1,26 +1,34 @@
 <template>
-  <span>Hello {{ deckStore.name }}</span>
+  <div>{{ data?.getDeckByNameAndAuthor }}</div>
+  <div v-if="error">{{ error }}</div>
 </template>
 
 <script setup lang="ts">
-import { onBeforeUpdate } from "vue";
+import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useDeckStore } from "@stores/useDeckStore";
+import { useQuery } from "@urql/vue";
+import { GetDeckByNameAndAuthorDocument } from "@generated/graphql";
 
 const route = useRoute();
-const deckStore = useDeckStore();
-
-deckStore.getDeck({
-  author: route.params.username as string,
-  name: route.params.deck as string,
+const author = ref<string>(route.params.username as string);
+const name = ref<string>(route.params.deck as string);
+const { data, error } = useQuery({
+  query: GetDeckByNameAndAuthorDocument,
+  variables: {
+    /* @ts-expect-error urql handles Ref<string> instead of string correctly */
+    author,
+    /* @ts-expect-error urql handles Ref<string> instead of string correctly */
+    name,
+  },
 });
 
-onBeforeUpdate(() => {
-  deckStore.getDeck({
-    author: route.params.username as string,
-    name: route.params.deck as string,
-  });
-});
+watch(
+  [() => route.params.username as string, () => route.params.deck as string],
+  ([u, d]) => {
+    author.value = u;
+    name.value = d;
+  }
+);
 </script>
 
 <route>
