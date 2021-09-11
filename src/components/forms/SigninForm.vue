@@ -26,9 +26,6 @@ import { useMutation } from "@urql/vue";
 
 import { useRouter } from "vue-router";
 
-import BaseInput from "@components/common/BaseInput.vue";
-import BaseButton from "@components/common/BaseButton.vue";
-
 import { SigninMutationDocument } from "@/generated/graphql";
 
 import { useUserStore } from "@stores/useUserStore";

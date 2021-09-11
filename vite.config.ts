@@ -3,6 +3,7 @@ import Vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import Layouts from "vite-plugin-vue-layouts";
 import TsconfigPaths from "vite-tsconfig-paths";
+import Components from "unplugin-vue-components/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,6 +17,11 @@ export default defineConfig({
     Pages(),
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
+    // https://github.com/antfu/unplugin-vue-components
+    Components({
+      dirs: ["src/components/common"],
+      dts: "./src/components.d.ts",
+    }),
   ],
   server: {
     proxy: {
@@ -28,6 +34,9 @@ export default defineConfig({
         timeout: 6000,
         proxyTimeout: 6000,
       },
+    },
+    watch: {
+      ignored: "./src/components.d.ts",
     },
   },
 });

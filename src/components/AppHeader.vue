@@ -28,8 +28,6 @@
 
 <script setup lang="ts">
 import AccountMenu from "@components/AccountMenu.vue";
-import BaseButton from "@components/common/BaseButton.vue";
-import BaseInput from "@components/common/BaseInput.vue";
 
 import { SearchIcon } from "@heroicons/vue/solid";
 

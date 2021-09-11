@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import BaseHeading from "@components/common/BaseHeading.vue";
-import BaseLink from "@components/common/BaseLink.vue";
 import SignupForm from "@components/forms/SignupForm.vue";
 import { useUserStore } from "@stores/useUserStore";
 

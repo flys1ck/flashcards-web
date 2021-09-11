@@ -1,4 +1,8 @@
-<template>Hello</template>
+<template>
+  <BaseButton>Hello</BaseButton>
+  <AppAside></AppAside>
+  <xz></xz>
+</template>
 
 <route>
 {

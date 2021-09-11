@@ -35,8 +35,7 @@ import {
 } from "@heroicons/vue/solid";
 
 import AsideLink from "@components/AsideLink.vue";
-import BaseLink from "@components/common/BaseLink.vue";
-import BaseHeading from "@components/common/BaseHeading.vue";
+
 import DeckSelect from "@components/DeckSelect.vue";
 
 const route = useRoute();

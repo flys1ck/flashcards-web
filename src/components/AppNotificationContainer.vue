@@ -21,7 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import BaseNotification from "@components/common/BaseNotification.vue";
 import { useNotificationStore } from "@stores/useNotificationStore";
 const notificationStore = useNotificationStore();
 </script>

@@ -37,7 +37,7 @@
 import { reactive } from "vue";
 
 import { AnnotationIcon } from "@heroicons/vue/solid";
-import BaseButton from "@components/common/BaseButton.vue";
+
 import AsideLink from "@components/AsideLink.vue";
 import AsideDeckNavigation from "@components/AsideDeckNavigation.vue";
 import AsideDeckNavigationSkeleton from "@components/skeletons/AsideDeckNavigationSkeleton.vue";

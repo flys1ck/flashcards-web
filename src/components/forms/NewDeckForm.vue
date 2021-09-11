@@ -30,9 +30,7 @@ import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { CombinedError, useMutation } from "@urql/vue";
-import BaseInput from "@components/common/BaseInput.vue";
-import BaseButton from "@components/common/BaseButton.vue";
-import BaseTextarea from "@components/common/BaseTextarea.vue";
+
 import VisibilityRadioGroup from "@components/VisibilityRadioGroup.vue";
 
 import { CreateDeckMutationDocument } from "@generated/graphql";

@@ -42,8 +42,6 @@ import { useMutation, CombinedError } from "@urql/vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 
-import BaseInput from "@components/common/BaseInput.vue";
-import BaseButton from "@components/common/BaseButton.vue";
 import { SignupMutationDocument } from "@generated/graphql";
 import { useUserStore } from "@stores/useUserStore";
 import { handleApiError } from "@utilities/handleApiError";

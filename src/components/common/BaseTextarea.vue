@@ -21,8 +21,6 @@
 import { PropType, computed } from "vue";
 import { ErrorObject } from "@vuelidate/core";
 
-import BaseLabel from "@components/common/BaseLabel.vue";
-
 const props = defineProps({
   /** An error object from vuelidate, e.g. `v$.name.$errors`. */
   errors: {

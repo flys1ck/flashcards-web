@@ -26,8 +26,6 @@
 import { ref } from "vue";
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from "@headlessui/vue";
 
-import BaseLabel from "@components/common/BaseLabel.vue";
-
 const emit = defineEmits(["update:modelValue"]);
 
 defineProps({
