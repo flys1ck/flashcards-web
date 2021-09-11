@@ -33,7 +33,7 @@ import { CombinedError, useMutation } from "@urql/vue";
 
 import VisibilityRadioGroup from "@components/VisibilityRadioGroup.vue";
 
-import { CreateDeckMutationDocument } from "@generated/graphql";
+import { CreateDeckDocument } from "@generated/graphql";
 import { handleApiError } from "@/utilities/handleApiError";
 import { useUserStore } from "@/stores/useUserStore";
 
@@ -53,7 +53,7 @@ const userStore = useUserStore();
 
 const v$ = useVuelidate(rules, formData, { $autoDirty: true });
 const { error, fetching, executeMutation: createDeck } = useMutation(
-  CreateDeckMutationDocument
+  CreateDeckDocument
 );
 
 const onSubmit = async () => {

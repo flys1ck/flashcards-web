@@ -17,7 +17,7 @@
       </div>
       <!-- Signup Button -->
       <div v-else class="space-x-2">
-        <BaseButton as="router-link" to="/signup" variant="secondary"
+        <BaseButton as="router-link" to="/signup" hierarchy="secondary"
           >Sign Up</BaseButton
         >
         <BaseButton as="router-link" to="/signin">Sign In</BaseButton>

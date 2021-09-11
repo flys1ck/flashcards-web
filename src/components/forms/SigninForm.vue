@@ -26,7 +26,7 @@ import { useMutation } from "@urql/vue";
 
 import { useRouter } from "vue-router";
 
-import { SigninMutationDocument } from "@/generated/graphql";
+import { SigninDocument } from "@/generated/graphql";
 
 import { useUserStore } from "@stores/useUserStore";
 import { handleApiError } from "@/utilities/handleApiError";
@@ -37,7 +37,7 @@ const formData = reactive({
 });
 
 const { data, error, fetching, executeMutation: signin } = useMutation(
-  SigninMutationDocument
+  SigninDocument
 );
 
 const userStore = useUserStore();

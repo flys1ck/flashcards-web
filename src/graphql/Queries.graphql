@@ -3,6 +3,7 @@ query GetDecks {
     id
     name
     author {
+      id
       username
     }
   }

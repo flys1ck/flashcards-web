@@ -7,7 +7,19 @@
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useQuery } from "@urql/vue";
+
 import { GetDeckByNameAndAuthorDocument } from "@generated/graphql";
+
+defineProps({
+  username: {
+    type: String,
+    required: true,
+  },
+  deck: {
+    type: String,
+    required: true,
+  },
+});
 
 const route = useRoute();
 const author = ref<string>(route.params.username as string);

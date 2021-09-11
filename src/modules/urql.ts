@@ -8,10 +8,12 @@ import {
   CombinedError,
   Client,
 } from "@urql/vue";
-import { cacheExchange } from "@urql/exchange-graphcache";
+// import { cacheExchange } from "@urql/exchange-graphcache";
 import { authExchange, AuthConfig } from "@urql/exchange-auth";
+import { devtoolsExchange } from "@urql/devtools";
 
 import { useUserStore } from "@stores/useUserStore";
+// import { GetDecksDocument } from "@/generated/graphql";
 
 interface AuthState {
   accessToken: string;
@@ -61,9 +63,28 @@ const ERROR_EXCHANGE_CONFIG = {
 
 const URQL_OPTIONS: ClientOptions = {
   url: "http://localhost:3000/graphql",
+  requestPolicy: "network-only",
   exchanges: [
+    devtoolsExchange,
     dedupExchange,
-    cacheExchange({}),
+    // cacheExchange({
+    //   updates: {
+    //     Mutation: {
+    //       createDeck(result, _args, cache) {
+    //         cache.updateQuery({ query: GetDecksDocument }, (data) => {
+    //           data?.getDecks.push(result.createDeck);
+    //           return data;
+    //         });
+    //       },
+    //       deleteDeck(result, _args, cache) {
+    //         cache.updateQuery({ query: GetDecksDocument }, (data) => {
+    //           data?.getDecks.findIndex();
+    //           return data;
+    //         });
+    //       }
+    //     },
+    //   },
+    // }),
     errorExchange(ERROR_EXCHANGE_CONFIG),
     authExchange<AuthState>(AUTH_EXCHANGE_CONFIG),
     fetchExchange,

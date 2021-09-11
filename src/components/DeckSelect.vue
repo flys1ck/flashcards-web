@@ -5,7 +5,7 @@
         class="flex items-center justify-between w-full px-3 py-3 text-left bg-white border rounded"
       >
         <span class="overflow-ellipsis w-full overflow-hidden">{{
-          selectedDeck
+          selectedDeck?.name
         }}</span>
         <SelectorIcon class="w-5 h-5 text-teal-600" />
       </ListboxButton>
@@ -21,7 +21,7 @@
             v-for="deck in data.getDecks"
             v-slot="{ selected, active }"
             :key="deck.id"
-            :value="deck.name"
+            :value="deck"
             as="template"
           >
             <li
@@ -59,21 +59,34 @@ import { SelectorIcon, CheckIcon } from "@heroicons/vue/solid";
 import { useQuery } from "@urql/vue";
 import { GetDecksDocument } from "@generated/graphql";
 import { useRouter, useRoute } from "vue-router";
+import { useActiveDeckStore } from "@stores/useActiveDeckStore";
 
+const activeDeckStore = useActiveDeckStore();
 const router = useRouter();
 const route = useRoute();
 const { data } = await useQuery({ query: GetDecksDocument });
 
-const selectedDeck = ref(route.params.deck);
+const _deck = data.value?.getDecks.find(
+  (deck) =>
+    deck.name === route.params.deck &&
+    deck.author.username === route.params.username
+);
+
+const selectedDeck = ref(_deck);
 // navigate route to selected deck, when value changes
-watch(selectedDeck, (value) => {
-  router.push({
-    name: "deck",
-    params: {
-      username: data.value?.getDecks.find((deck) => deck.name === value)?.author
-        .username,
-      deck: value,
-    },
-  });
-});
+watch(
+  selectedDeck,
+  (activeDeck) => {
+    activeDeckStore.updateActiveDeckId(activeDeck?.id);
+    router.push({
+      name: "deck",
+      params: {
+        username: data.value?.getDecks.find((deck) => deck.id === deck.id)
+          ?.author.username,
+        deck: activeDeck?.name,
+      },
+    });
+  },
+  { immediate: true }
+);
 </script>

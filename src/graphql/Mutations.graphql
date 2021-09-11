@@ -1,8 +1,4 @@
-mutation SignupMutation(
-  $email: String!
-  $password: String!
-  $username: String!
-) {
+mutation Signup($email: String!, $password: String!, $username: String!) {
   signup(email: $email, password: $password, username: $username) {
     accessToken
     user {
@@ -13,7 +9,7 @@ mutation SignupMutation(
   }
 }
 
-mutation SigninMutation($password: String!, $username: String!) {
+mutation Signin($password: String!, $username: String!) {
   signin(password: $password, username: $username) {
     accessToken
     user {
@@ -24,7 +20,7 @@ mutation SigninMutation($password: String!, $username: String!) {
   }
 }
 
-mutation SignoutMutation {
+mutation Signout {
   signout
 }
 
@@ -39,12 +35,19 @@ mutation RefreshAccessToken {
   }
 }
 
-mutation CreateDeckMutation(
+mutation CreateDeck(
   $name: String!
   $description: String
   $visibility: String!
 ) {
   createDeck(name: $name, description: $description, visibility: $visibility) {
+    id
+    name
+  }
+}
+
+mutation DeleteDeck($id: ID!) {
+  deleteDeck(id: $id) {
     id
     name
   }

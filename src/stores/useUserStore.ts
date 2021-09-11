@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { CombinedError } from "@urql/vue";
 import {
-  SigninMutationMutation,
+  SigninMutation,
   RefreshAccessTokenDocument,
-  SignupMutationMutation,
+  SignupMutation,
 } from "@/generated/graphql";
 import { handleApiError } from "@/utilities/handleApiError";
 import { client } from "@modules/urql";
@@ -23,7 +23,7 @@ const useUserStore = defineStore("user", {
     },
   },
   actions: {
-    signup(data: SignupMutationMutation | undefined) {
+    signup(data: SignupMutation | undefined) {
       this.$patch({
         id: data?.signup?.user?.id,
         username: data?.signup?.user?.username,
@@ -31,7 +31,7 @@ const useUserStore = defineStore("user", {
         accessToken: data?.signup?.accessToken,
       });
     },
-    signin(data: SigninMutationMutation | undefined) {
+    signin(data: SigninMutation | undefined) {
       this.$patch({
         id: data?.signin?.user?.id,
         username: data?.signin?.user?.username,

@@ -20,7 +20,6 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-vue-components
     Components({
       dirs: ["src/components/common"],
-      dts: "./src/components.d.ts",
     }),
   ],
   server: {
@@ -34,9 +33,6 @@ export default defineConfig({
         timeout: 6000,
         proxyTimeout: 6000,
       },
-    },
-    watch: {
-      ignored: "./src/components.d.ts",
     },
   },
 });

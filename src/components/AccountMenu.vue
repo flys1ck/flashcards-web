@@ -31,7 +31,7 @@ import { reactive } from "vue";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { CombinedError, useMutation } from "@urql/vue";
 
-import { SignoutMutationDocument } from "@generated/graphql";
+import { SignoutDocument } from "@generated/graphql";
 import { useNotificationStore } from "@stores/useNotificationStore";
 import { useUserStore } from "@stores/useUserStore";
 
@@ -51,9 +51,7 @@ const accountMenuLinks = reactive([
     to: "/settings",
   },
 ]);
-const { executeMutation: signoutMutation } = useMutation(
-  SignoutMutationDocument
-);
+const { executeMutation: signoutMutation } = useMutation(SignoutDocument);
 
 const onSignout = async () => {
   try {

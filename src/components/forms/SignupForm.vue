@@ -42,7 +42,7 @@ import { useMutation, CombinedError } from "@urql/vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 
-import { SignupMutationDocument } from "@generated/graphql";
+import { SignupDocument } from "@generated/graphql";
 import { useUserStore } from "@stores/useUserStore";
 import { handleApiError } from "@utilities/handleApiError";
 import { useRouter } from "vue-router";
@@ -63,17 +63,15 @@ const rules = {
 const v$ = useVuelidate(rules, formData, { $autoDirty: true });
 
 const userStore = useUserStore();
-const { data, error, fetching, executeMutation: signup } = useMutation(
-  SignupMutationDocument
-);
+const { data, fetching, executeMutation: signup } = useMutation(SignupDocument);
 
 const onSubmit = async () => {
   v$.value.$touch();
   if (v$.value.$error) return;
 
   try {
-    await signup(formData);
-    if (error.value) throw error.value;
+    const error = await signup(formData);
+    if (error) throw error;
     userStore.signup(data.value);
     router.push("/");
   } catch (e) {
