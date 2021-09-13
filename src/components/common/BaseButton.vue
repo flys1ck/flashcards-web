@@ -1,7 +1,7 @@
 <template>
   <component
     :is="as"
-    class="focus:ring ring-teal-400/30 inline-block font-medium text-white rounded"
+    class="focus:ring ring-teal-400/30 flex-none inline-block font-medium text-white rounded"
     :class="computedClasses"
     :disabled="isLoading"
   >
