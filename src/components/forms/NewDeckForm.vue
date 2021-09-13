@@ -28,7 +28,7 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
+import { required, maxLength } from "@vuelidate/validators";
 import { CombinedError, useMutation } from "@urql/vue";
 
 import VisibilityRadioGroup from "@components/VisibilityRadioGroup.vue";
@@ -44,7 +44,7 @@ const formData = reactive({
 });
 
 const rules = {
-  name: { required },
+  name: { required, maxLength: maxLength(72) },
   visibility: { required },
 };
 
