@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="w-72 flex flex-col justify-between flex-none truncate bg-gray-100"
+    class="w-72 flex flex-col justify-between flex-none truncate bg-gray-100 border-r"
   >
     <div class="mt-6">
       <suspense>
