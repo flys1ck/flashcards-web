@@ -1,14 +1,12 @@
 <template>
   <div>
-    <CardEditorMenu :editor="editor" />
+    <CardEditorMenu :editor="editor" :class="classes" />
     <EditorContent :editor="editor"></EditorContent>
-  </div>
-  <div v-if="editor">
-    {{ editor.getJSON() }}
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import lowlight from "lowlight";
 // nodes
@@ -29,8 +27,15 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 
 import CardEditorMenu from "@components/CardEditorMenu.vue";
 
+const classes = ref("hidden");
 const editor = useEditor({
-  content: "Some text from tiptap",
+  onFocus() {
+    classes.value = "block";
+  },
+  onBlur() {
+    // The editor isn’t focused anymore.
+    classes.value = "hidden";
+  },
   extensions: [
     // nodes
     Document,
@@ -72,8 +77,7 @@ const editor = useEditor({
   ],
   editorProps: {
     attributes: {
-      class:
-        "p-2 border border-teal-500 rounded focus:outline-none h-64 overflow-auto",
+      class: "p-2 border focus:outline-none h-64 overflow-auto",
       spellcheck: "false",
     },
   },
