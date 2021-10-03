@@ -2,15 +2,15 @@
   <div>
     <div class="px-4">
       <!-- deck select heading -->
-      <div class="flex items-baseline justify-between">
+      <!-- <div class="flex items-baseline justify-between">
         <BaseHeading as="h2" size="xs">Decks</BaseHeading>
         <BaseLink as="router-link" to="/decks/new">New</BaseLink>
-      </div>
+      </div> -->
       <!-- brand and deck selection -->
-      <DeckSelect class="mt-1" />
+      <!-- <DeckSelect class="mt-1" /> -->
     </div>
     <!-- deck navigation -->
-    <div class="mt-6">
+    <div>
       <AsideLink
         v-for="link in navigationLinks"
         :key="link.name"
@@ -35,7 +35,6 @@ import {
 } from "@heroicons/vue/solid";
 
 import AsideLink from "@components/AsideLink.vue";
-
 import DeckSelect from "@components/DeckSelect.vue";
 
 const route = useRoute();
