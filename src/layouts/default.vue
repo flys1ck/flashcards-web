@@ -3,7 +3,7 @@
     <AppHeader />
     <div class="flex flex-grow overflow-hidden">
       <AppAside />
-      <main class="flex-grow p-8 overflow-auto">
+      <main class="flex-grow overflow-auto">
         <router-view />
       </main>
     </div>
