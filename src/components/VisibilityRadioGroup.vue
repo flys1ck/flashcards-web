@@ -12,10 +12,11 @@
         :value="visibility.value"
       >
         <div
-          class="p-4 border-2 rounded"
-          :class="checked ? 'bg-teal-50 border-teal-500' : ''"
+          class="px-4 py-2 border-2 rounded"
+          :class="{ 'bg-teal-50 border-teal-500': checked }"
         >
-          {{ visibility.name }}
+          <span class="font-medium">{{ visibility.name }}</span>
+          <p class="text-gray-500">{{ visibility.description }}</p>
         </div>
       </RadioGroupOption>
     </div>
@@ -40,10 +41,12 @@ const visibilities = ref([
   {
     name: "Private",
     value: "private",
+    description: "Only you and collaborators can access this project.",
   },
   {
     name: "Public",
     value: "public",
+    description: "This project is available to everyone.",
   },
 ]);
 
