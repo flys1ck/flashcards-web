@@ -1,12 +1,11 @@
 <template>
   <div>
-    <CardEditorMenu :editor="editor" :class="classes" />
+    <CardEditorMenu :editor="editor" />
     <EditorContent :editor="editor"></EditorContent>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import lowlight from "lowlight";
 // nodes
@@ -27,15 +26,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 
 import CardEditorMenu from "@components/CardEditorMenu.vue";
 
-const classes = ref("hidden");
 const editor = useEditor({
-  onFocus() {
-    classes.value = "block";
-  },
-  onBlur() {
-    // The editor isn’t focused anymore.
-    classes.value = "hidden";
-  },
   extensions: [
     // nodes
     Document,
