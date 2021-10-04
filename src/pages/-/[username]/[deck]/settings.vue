@@ -1,18 +1,20 @@
 <template>
-  <BaseHeading as="h2" size="md">Deck Settings</BaseHeading>
-  <BaseHeading as="h3" size="sm" class="mt-4">Danger Zone</BaseHeading>
-  <div class="flex items-center justify-between p-4 mt-2 border rounded">
-    <div class="">
-      <BaseHeading as="h4" size="xs">Delete deck</BaseHeading>
-      <p>Once you delete this deck, there is no way to recover it.</p>
+  <div class="p-4">
+    <BaseHeading as="h2" size="md">Deck Settings</BaseHeading>
+    <BaseHeading as="h3" size="sm" class="mt-4">Danger Zone</BaseHeading>
+    <div class="flex items-center justify-between p-4 mt-2 border rounded">
+      <div class="">
+        <BaseHeading as="h4" size="xs">Delete deck</BaseHeading>
+        <p>Once you delete this deck, there is no way to recover it.</p>
+      </div>
+      <BaseButton
+        variant="destructive"
+        hierarchy="secondary"
+        :is-loading="fetching"
+        @click="onClick"
+        >Delete deck</BaseButton
+      >
     </div>
-    <BaseButton
-      variant="destructive"
-      hierarchy="secondary"
-      :is-loading="fetching"
-      @click="onClick"
-      >Delete deck</BaseButton
-    >
   </div>
 </template>
 
