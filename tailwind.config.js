@@ -11,7 +11,7 @@ module.exports = {
         progress: "progress linear 1 forwards",
       },
       colors: {
-        teal: colors.teal,
+        ...colors,
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
