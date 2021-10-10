@@ -29,7 +29,6 @@ import { useRoute } from "vue-router";
 import {
   CollectionIcon,
   CogIcon,
-  UsersIcon,
   ChartPieIcon,
   PlayIcon,
 } from "@heroicons/vue/solid";
@@ -72,17 +71,6 @@ const navigationLinks = reactive([
       },
     },
     icon: ChartPieIcon,
-  },
-  {
-    name: "Collaborators",
-    to: {
-      name: "deck-collaborators",
-      params: {
-        username: route.params.username,
-        deck: route.params.deck,
-      },
-    },
-    icon: UsersIcon,
   },
   {
     name: "Settings",
