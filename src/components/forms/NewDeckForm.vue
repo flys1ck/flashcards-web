@@ -7,7 +7,14 @@
       name="username"
       :errors="v$.name.$errors"
       :is-invalid="v$.name.$dirty && v$.name.$invalid"
-    />
+    >
+      <template v-if="generatedSlug" #helpText>
+        Your deck will be available under
+        <span class="font-mono">
+          {{ userStore.username }}/{{ generatedSlug }} </span
+        >.
+      </template>
+    </BaseInput>
     <BaseTextarea
       v-model="formData.description"
       class="mt-2"
@@ -25,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength } from "@vuelidate/validators";
@@ -34,13 +41,18 @@ import { CombinedError, useMutation } from "@urql/vue";
 import VisibilityRadioGroup from "@components/VisibilityRadioGroup.vue";
 
 import { CreateDeckDocument } from "@generated/graphql";
-import { handleApiError } from "@/utilities/handleApiError";
-import { useUserStore } from "@/stores/useUserStore";
+import { handleApiError } from "@utilities/handleApiError";
+import { useUserStore } from "@stores/useUserStore";
 
 const formData = reactive({
   name: "",
   description: "",
   visibility: "private",
+});
+
+const generatedSlug = computed(() => {
+  // NOTE: needs to be in sync with the backend slug generation
+  return formData.name.toLowerCase().replace(/[^A-Za-z-]+/g, "-");
 });
 
 const rules = {

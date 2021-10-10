@@ -8,7 +8,7 @@
       <router-link
         :to="{
           name: 'deck',
-          params: { username: deck.author.username, deck: deck.name },
+          params: { username: deck.author.username, deck: deck.slug },
         }"
         class="flex items-center justify-between p-4 border-2 rounded"
       >

@@ -2,6 +2,7 @@ query GetDecks {
   getDecks {
     id
     name
+    slug
     visibility
     author {
       id
@@ -10,8 +11,8 @@ query GetDecks {
   }
 }
 
-query GetDeckByNameAndAuthor($name: String!, $author: String!) {
-  getDeckByNameAndAuthor(name: $name, author: $author) {
+query GetDeckBySlugAndAuthor($slug: String!, $author: String!) {
+  getDeckBySlugAndAuthor(slug: $slug, author: $author) {
     id
     name
     description

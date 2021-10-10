@@ -1,5 +1,5 @@
 <template>
-  <div>{{ data?.getDeckByNameAndAuthor }}</div>
+  <div>{{ data?.getDeckBySlugAndAuthor }}</div>
   <div v-if="error">{{ error }}</div>
 </template>
 
@@ -8,7 +8,7 @@ import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useQuery } from "@urql/vue";
 
-import { GetDeckByNameAndAuthorDocument } from "@generated/graphql";
+import { GetDeckBySlugAndAuthorDocument } from "@generated/graphql";
 
 defineProps({
   username: {
@@ -23,14 +23,14 @@ defineProps({
 
 const route = useRoute();
 const author = ref<string>(route.params.username as string);
-const name = ref<string>(route.params.deck as string);
+const slug = ref<string>(route.params.deck as string);
 const { data, error } = useQuery({
-  query: GetDeckByNameAndAuthorDocument,
+  query: GetDeckBySlugAndAuthorDocument,
   variables: {
     /* @ts-expect-error urql handles Ref<string> instead of string correctly */
     author,
     /* @ts-expect-error urql handles Ref<string> instead of string correctly */
-    name,
+    slug,
   },
 });
 
@@ -38,7 +38,7 @@ watch(
   [() => route.params.username as string, () => route.params.deck as string],
   ([u, d]) => {
     author.value = u;
-    name.value = d;
+    slug.value = d;
   }
 );
 </script>
