@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="group flex px-2 py-2 bg-white justify-between hover:bg-gray-50"
-    @contextmenu.prevent="onContextMenu"
-  >
+  <div class="group flex px-2 py-2 bg-white justify-between hover:bg-gray-50">
     <div class="flex">
       <div class="flex flex-col">
         <router-link
@@ -17,8 +14,6 @@
         <span class="font-light text-xs italic">{{ card.createdAt }}</span>
       </div>
     </div>
-    <!--         class="hidden group-hover:block"
-        @click="$emit('deleteCard', card.id)" -->
     <Menu v-slot="{ open }" as="div" class="relative">
       <MenuButton
         class="h-full group-hover:flex group-hover:items-center group-hover:justify-center"

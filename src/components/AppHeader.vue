@@ -3,9 +3,9 @@
     class="flex items-center justify-between flex-none h-20 px-8 bg-teal-900"
   >
     <!-- Brand -->
-    <div class="flex items-center space-x-4">
-      <router-link class="text-4xl font-bold text-teal-100" to="/"
-        >Kartaki</router-link
+    <div class="flex items-center">
+      <router-link class="text-4xl font-medium text-lime-300" to="/"
+        >flipflap</router-link
       >
     </div>
     <!-- Search -->

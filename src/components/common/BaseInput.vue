@@ -28,12 +28,12 @@
     </label>
 
     <!-- Help Text -->
-    <small v-if="$slots.helpText" class="block text-xs text-gray-500">
+    <small v-if="$slots.helpText" class="block text-xs text-gray-500 mt-0.5">
       <!-- @slot A help text, which gets rendered below the input. -->
       <slot name="helpText" />
     </small>
     <!-- Input Errors -->
-    <ul v-if="errors">
+    <ul v-if="errors" class="mt-0.5">
       <li
         v-for="error of errors"
         :key="error.$uid"
